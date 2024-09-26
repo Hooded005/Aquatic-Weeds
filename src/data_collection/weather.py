@@ -7,6 +7,7 @@ longitude = 27.8569
 # Define the API credentials and URLs
 client_id = '5mtp9oonnmmvkucj7phr0q3lt6'         # Replace with your client ID
 client_secret = 'ob81fml3cjjhhb4kvauhkrs7nc7qc09lapdca6b4besga7v4u0i' # Replace with your client secret
+api_key = 'BgGPhMfSQC8CzgqFci2ze7aKYpG9QcHD351i11Fo' # Replace with your API key
 token_url = 'https://auth.afrigis.services/oauth2/token'  # Afrigis token URL
 weather_api_url = f'https://afrigis.services/weather-forecast/v1/getDailyByCoords?latitude={latitude}&longitude={longitude}&station_count=3&location_buffer=10000&day_count=7&groups=basic'
 
@@ -32,9 +33,10 @@ def get_access_token(client_id, client_secret):
         return None
 
 # Step 2: Fetch weather data from the API
-def fetch_weather_data(access_token, lat, lon):
+def fetch_weather_data(access_token, lat, lon, api_key):
     headers = {
         'Authorization': f'Bearer {access_token}',
+        'x-api-key': api_key,  # Add the API key here
         'Content-Type': 'application/json'
     }
     params = {
@@ -58,8 +60,6 @@ if __name__ == "__main__":
     token = get_access_token(client_id, client_secret)
     
     if token:
-        # Example: Coordinates for Hartbeespoort Dam
-               
-        weather_data = fetch_weather_data(token, latitude, longitude)
+        weather_data = fetch_weather_data(token, latitude, longitude, api_key)
         if weather_data:
             print("Successfully retrieved weather data!")
