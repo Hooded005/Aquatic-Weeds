@@ -1,52 +1,47 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
-from sklearn.metrics import mean_squared_error, accuracy_score
+from sklearn.metrics import mean_squared_error
+import pickle
+from data_collection.weather import *
 
 # Load the data from the CSV file
-data = pd.read_csv('data\\processed\\CompleteData.csv', sep=';')
-
-# Encode categorical variables
-label_encoder = LabelEncoder()
-data['start_pos'] = label_encoder.fit_transform(data['start_pos'])
-data['end_pos'] = label_encoder.fit_transform(data['end_pos'])  # For classification
+data = pd.read_csv('data\\historical\\CompleteData.csv', sep=';');
+predictData = pd.read_csv('data\\new\\weather.csv', sep=';');
+filename = "size_Predictor.pkl";
 
 # Split data into features (X) and labels (y)
-X = data[['start_pos', 'temp', 'speed', 'direction', 'start_size', 'days']]
+X = data[['temp', 'speed', 'direction', 'start_size']]
 y_size = data['end_size']
-y_pos = data['end_pos']
 
-# Split for end_size regression
-X_train_size, X_test_size, y_train_size, y_test_size = train_test_split(X, y_size, test_size=0.2, random_state=42)
+predictor = predictData[['temp', 'speed', 'direction', 'start_size']]
 
-# Train a Random Forest Regressor for end_size prediction
-rf_regressor = RandomForestRegressor()
-rf_regressor.fit(X_train_size, y_train_size)
+def trainModel():
+    accuracy = 0;
+    while accuracy <= 85:
+        # Split for end_size regression
+        X_train_size, X_test_size, y_train_size, y_test_size = train_test_split(X, y_size, test_size=0.2, random_state=42)
 
-# Predict and evaluate for end_size
-y_pred_size = rf_regressor.predict(X_test_size)
-mse = mean_squared_error(y_test_size, y_pred_size)
-print(f"Mean Squared Error (end_size): {mse}")
+        # Train a Random Forest Regressor for end_size prediction
+        rf_regressor = RandomForestRegressor()
+        rf_regressor.fit(X_train_size, y_train_size)
+
+        pickle.dump(rf_regressor, open(filename, "wb"))
+
+        # Predict and evaluate for end_size
+        y_pred_size = rf_regressor.predict(X_test_size)
+        accuracy = mean_squared_error(y_test_size, y_pred_size)
+        print(f"Mean Squared Error (end_size): {accuracy}")
 
 # Print actual vs predicted for end_size
-print("\nPredicted vs Actual for end_size:")
-for pred, actual in zip(y_pred_size, y_test_size):
-    print(f"Predicted: {pred:.2f}, Actual: {actual}")
+""" trainModel(); """
 
-# Split for end_pos classification
-X_train_pos, X_test_pos, y_train_pos, y_test_pos = train_test_split(X, y_pos, test_size=0.2, random_state=42)
+extract_forecast_details()
 
-# Train a Random Forest Classifier for end_pos prediction
-rf_classifier = RandomForestClassifier()
-rf_classifier.fit(X_train_pos, y_train_pos)
+def predict():
+    model = pickle.load(open(filename, 'rb'))
+    y_pred = model.predict(predictor)
+    return y_pred
 
-# Predict and evaluate for end_pos
-y_pred_pos = rf_classifier.predict(X_test_pos)
-accuracy = accuracy_score(y_test_pos, y_pred_pos)
-print(f"\nAccuracy (end_pos): {accuracy}")
-
-# Print actual vs predicted for end_pos
-print("\nPredicted vs Actual for end_pos:")
-for pred, actual in zip(y_pred_pos, y_test_pos):
-    print(f"Predicted: {label_encoder.inverse_transform([pred])[0]}, Actual: {label_encoder.inverse_transform([actual])[0]}")
+print(f"", predictor,
+      "\nPredicted data: ", predict());
