@@ -1,9 +1,10 @@
 import requests
 from requests.auth import HTTPBasicAuth
+import csv
 
 latitude = -25.7381
 longitude = 27.8569
-days = 1
+days = 3
 
 # Define the API credentials and URLs
 client_id = '5mtp9oonnmmvkucj7phr0q3lt6'         # Replace with your client ID
@@ -83,6 +84,11 @@ def extract_forecast_details(weather_data):
             print(f"Temperature Average: {temp_avg}°C")
             print(f"Wind Speed: {wind_speed} km/h")
             print(f"Wind Direction: {wind_direction}°")
-
             
+            file_path = "data\\new\\weather.csv";
+
+            with open(file_path, mode='a', newline='') as file:
+                writer = csv.writer(file, delimiter=";");
+                writer.writerow([temp_avg, wind_speed, wind_direction, 10]);
+
 extract_forecast_details(weather_data)

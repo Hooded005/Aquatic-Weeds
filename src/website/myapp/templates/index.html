@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Layout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <!-- Skip Navigation Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <h1 class="navbar-brand">Dashboard</h1>
+            <div class="color-scheme-selector">
+                <label for="color-scheme">Color Scheme:</label>
+                <select id="color-scheme" name="color-scheme" aria-label="Select color scheme" title="Select a color scheme to change the dashboard appearance">
+                    <option value="default">Default</option>
+                    <option value="dark">Dark Mode</option>
+                    <option value="light">Light Mode</option>
+                    <option value="blue">Blue Scheme</option>
+                    <option value="green">Green Scheme</option>
+                    <option value="colorblind">Colorblind Friendly</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Date Picker Section -->
+            <section class="date-picker-section">
+                <h2>Date Picker</h2>
+                <label for="date-picker">Select Date:</label>
+                <input type="date" id="date-picker" name="date-picker">
+            </section>
+
+            <!-- Patch Info Section -->
+            <section class="patch-info-section">
+                <h2>Patch and Map Info</h2>
+                <!-- Placeholder content -->
+                <p>Details about selected patches and maps will appear here.</p>
+            </section>
+        </aside>
+
+        <!-- Content Area -->
+        <section class="content-area">
+            <!-- Map Section -->
+            <div class="map-section" tabindex="0" role="img" aria-label="Interactive map">
+                <p>Map</p>
+                <p>Click on patches to see extra info</p>
+            </div>
+        </section>
+    </main>
+                    <!-- Info Section -->
+                    <div class="info-section">
+                        <h2>Additional Information</h2>
+                        <p>Extra info such as average daily weather will be displayed here.</p>
+                    </div>
+                    
+    <!-- ARIA Live Region for Announcements -->
+    <div id="color-scheme-announcement" aria-live="polite" class="visually-hidden"></div>
+
+    <!-- External JavaScript -->
+    <script href="{% static 'app.js' %}"></script>
+</body>
+</html>

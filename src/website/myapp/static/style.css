@@ -1,0 +1,274 @@
+/* Base Styles */
+:root {
+
+/* Primary Color Variables */
+--primary-bg-color: #2b2d42ff;     /* Space Cadet */
+--secondary-bg-color: #8d99aeff;   /* Cool Gray */
+--hover-bg-color: #ef233cff;       /* Red Pantone */
+--text-color: #edf2f4ff;           /* Anti-Flash White */
+--body-bg-color: #edf2f4ff;        /* Anti-Flash White */
+--panel-bg-color: #c20222;       /* Fire Engine Red */
+
+/* Font Sizes */
+--font-size-small: 0.9rem;
+--font-size-base: 1rem;
+--font-size-large: 1.2rem;
+
+/* Spacing */
+--spacing-small: 0.5rem;
+--spacing-base: 1rem;
+--spacing-large: 1.5rem;
+
+/* Border Radius */
+--border-radius: 0.5rem;
+
+/* CSS HEX */
+--space-cadet: #2b2d42ff;
+--cool-gray: #8d99aeff;
+--antiflash-white: #edf2f4ff;
+--red-pantone: #ef233cff;
+--fire-engine-red: #d90429ff;
+
+/* CSS HSL */
+--space-cadet: hsla(235, 21%, 21%, 1);
+--cool-gray: hsla(218, 17%, 62%, 1);
+--antiflash-white: hsla(197, 24%, 94%, 1);
+--red-pantone: hsla(353, 86%, 54%, 1);
+--fire-engine-red: hsla(350, 96%, 43%, 1);
+
+/* Gradient Variables */
+--gradient-top: linear-gradient(0deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+--gradient-right: linear-gradient(90deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+--gradient-bottom: linear-gradient(180deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+--gradient-left: linear-gradient(270deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+--gradient-top-right: linear-gradient(45deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+--gradient-bottom-right: linear-gradient(135deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+--gradient-top-left: linear-gradient(225deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+--gradient-bottom-left: linear-gradient(315deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+--gradient-radial: radial-gradient(#2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+
+}
+
+/* Reset and Body Settings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--body-bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Skip Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-bg-color);
+    color: var(--text-color);
+    padding: var(--spacing-small);
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Header and Navbar */
+.header {
+    background-color: var(--primary-bg-color);
+    padding: var(--spacing-base);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    padding-left: 2%;
+    padding-right: 2%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: var(--font-size-large);
+}
+
+.color-scheme-selector {
+    display: flex;
+    align-items: center;
+}
+
+.color-scheme-selector label {
+    margin-right: var(--spacing-small);
+    font-size: var(--font-size-base);
+}
+
+.color-scheme-selector select {
+    padding: var(--spacing-small);
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+}
+
+.color-scheme-selector select:hover,
+.color-scheme-selector select:focus {
+    background-color: var(--hover-bg-color);
+    outline: 2px solid var(--hover-bg-color);
+    outline-offset: 2px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    /*max-width: 1200px;*/
+    margin-top: var(--spacing-large);
+    margin-bottom: var(--spacing-large);
+    /*margin: var(--spacing-large) auto;*/
+    padding: 0 var(--spacing-base);
+    gap: var(--spacing-large);
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+    
+}
+
+.sidebar section {
+    background-color: var(--panel-bg-color);
+    padding: var(--spacing-base);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Date Picker Section */
+.date-picker-section {
+    flex-shrink: 0; /* Prevents this section from resizing */
+}
+
+/* Patch Info Section */
+.patch-info-section {
+    flex-grow: 1; /* Ensures this section grows to fill remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.sidebar h2 {
+    margin-bottom: var(--spacing-small);
+    color: var(--primary-bg-color);
+}
+
+/* Content Area */
+.content-area {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+}
+
+.map-section,
+.info-section {
+    background-color: var(--panel-bg-color);
+    padding: var(--spacing-base);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-section{
+    width: calc(100%-var(--spacing-base));
+    margin: 0 var(--spacing-base);
+    margin-bottom: var(--spacing-small);
+}
+
+.map-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-bg-color);
+    color: var(--text-color);
+    text-align: center;
+}
+
+.map-section p {
+    margin-bottom: var(--spacing-small);
+}
+
+.info-section h2 {
+    margin-bottom: var(--spacing-small);
+    color: var(--primary-bg-color);
+}
+
+.info-section p {
+    color: var(--text-color);
+}
+
+/* Focus Styles */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--hover-bg-color);
+    outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        padding: 0 var(--spacing-small);
+    }
+
+    .sidebar,
+    .content-area {
+        flex: 1 1 auto;
+    }
+    .info-section{
+        margin: 0 var(--spacing-small);
+    }
+}
+
+/* High Contrast Mode */
+@media (forced-colors: active) {
+    * {
+        forced-color-adjust: none;
+    }
+}
+
+/* Visually Hidden (for ARIA live regions) */
+.visually-hidden {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Colorblind Friendly Color Scheme */
+.colorblind-scheme {
+    --primary-bg-color: #000000;
+    --secondary-bg-color: #ffffff;
+    --hover-bg-color: #aaaaaa;
+    --text-color: #ffffff;
+    --body-bg-color: #ffffff;
+    --panel-bg-color: #000000;
+}
+
+/* Additional Color Schemes can be defined similarly */
