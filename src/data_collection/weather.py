@@ -4,7 +4,7 @@ import csv
 
 latitude = -25.7381
 longitude = 27.8569
-days = 1
+days = 3
 
 # Define the API credentials and URLs
 client_id = '5mtp9oonnmmvkucj7phr0q3lt6'         # Replace with your client ID

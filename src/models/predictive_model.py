@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from sklearn.metrics import mean_squared_error
 import pickle
-from data_collection.weather import *
+from src.data_collection.weather import *
 
 # Load the data from the CSV file
 data = pd.read_csv('data\\historical\\CompleteData.csv', sep=';');
@@ -34,9 +34,9 @@ def trainModel():
         print(f"Mean Squared Error (end_size): {accuracy}")
 
 # Print actual vs predicted for end_size
-""" trainModel(); """
+trainModel();
 
-extract_forecast_details()
+""" extract_forecast_details() """
 
 def predict():
     model = pickle.load(open(filename, 'rb'))
@@ -44,4 +44,4 @@ def predict():
     return y_pred
 
 print(f"", predictor,
-      "\nPredicted data: ", predict());
+      "\nPredicted size: ", predict());
