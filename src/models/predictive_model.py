@@ -4,14 +4,13 @@ import os
 # Add the root project directory to the path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
-from src.data_collection.weather import get_access_token, fetch_weather_data, extract_forecast_details
+from src.data_collection.weather import *
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 import pickle
-from src.data_collection.weather import *
 
 startSize = input("What is the first start size: ")
 
@@ -53,13 +52,9 @@ def train_model():
         accuracy = mean_squared_error(y_test_size, y_pred_size)
         print(f"Mean Squared Error (end_size): {accuracy}")
 
-train_model()
-
 def predict():
     model = pickle.load(open(filename, 'rb'))
     y_pred = model.predict(predictor)
     return y_pred
 
 print(f"Predicted size: {predict()}")
-
-clear_weather();
