@@ -11,18 +11,20 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 import pickle
-from src.data_collection.weather import get_access_token, fetch_weather_data, extract_forecast_details
+from src.data_collection.weather import *
+
+startSize = input("What is the first start size: ")
 
 # Fetch and process weather data for predictions
-def prepare_weather_data():
+def prepare_weather_data(start):
     token = get_access_token()
     if token:
         weather_data = fetch_weather_data(token)
         if weather_data:
-            extract_forecast_details(weather_data)
+            extract_forecast_details(weather_data, start)
 
 # Prepare weather data by calling the function
-prepare_weather_data()
+prepare_weather_data(startSize)
 
 # Load data for training and prediction
 data = pd.read_csv('data/historical/CompleteData.csv', sep=';')
@@ -59,3 +61,5 @@ def predict():
     return y_pred
 
 print(f"Predicted size: {predict()}")
+
+clear_weather();

@@ -1,10 +1,12 @@
 import requests
 import csv
+import pandas as pd
 
 # Coordinates and API credentials
 latitude = -25.7381
 longitude = 27.8569
-days = 3
+days = input("Enter the amount of days between 1 and 7: ");
+
 client_id = '5mtp9oonnmmvkucj7phr0q3lt6'
 client_secret = 'ob81fml3cjjhhb4kvauhkrs7nc7qc09lapdca6b4besga7v4u0i'
 api_key = 'BgGPhMfSQC8CzgqFci2ze7aKYpG9QcHD351i11Fo'
@@ -40,7 +42,7 @@ def fetch_weather_data(access_token):
         print("Failed to fetch weather data:", response.status_code, response.text)
         return None
 
-def extract_forecast_details(weather_data):
+def extract_forecast_details(weather_data, predicted_size):
     """Extract forecast details and save them to a CSV file."""
     if 'result' in weather_data:
         forecasts = weather_data['result'][0]['forecasts']
@@ -52,4 +54,13 @@ def extract_forecast_details(weather_data):
                 temp_avg = day['basic']['temperature_apparent']
                 wind_speed = day['basic']['wind_speed']
                 wind_direction = day['basic']['wind_direction_degrees']
-                writer.writerow([temp_avg, wind_speed, wind_direction, 10])
+                writer.writerow([temp_avg, wind_speed, wind_direction, predicted_size])
+                
+def clear_weather():
+    file_path = "data/new/weather.csv"
+    # Load the CSV file to get headers
+    data = pd.read_csv(file_path)        
+    # Create a DataFrame with only the header
+    cleared_data = pd.DataFrame(columns=data.columns)        
+    # Save back to the CSV, overwriting existing data but keeping the header
+    cleared_data.to_csv(file_path, index=False)
