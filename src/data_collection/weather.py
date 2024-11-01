@@ -51,10 +51,13 @@ def extract_forecast_details(weather_data, predicted_size):
         with open(file_path, mode='a', newline='') as file:
             writer = csv.writer(file, delimiter=";")
             for day in forecasts:
+                date = day['date']
                 temp_avg = day['basic']['temperature_apparent']
                 wind_speed = day['basic']['wind_speed']
                 wind_direction = day['basic']['wind_direction_degrees']
-                writer.writerow([temp_avg, wind_speed, wind_direction, predicted_size])
+                weather_Data = [date, temp_avg, wind_speed, wind_direction, predicted_size]
+                writer.writerow([date, temp_avg, wind_speed, wind_direction, predicted_size])
+    return weather_Data;
                 
 def clear_weather():
     file_path = "data/new/weather.csv"

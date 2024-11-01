@@ -13,6 +13,7 @@ from sklearn.metrics import mean_squared_error
 import pickle
 
 startSize = input("What is the first start size: ")
+arraySize = [];
 
 # Fetch and process weather data for predictions
 def prepare_weather_data(start):
@@ -20,10 +21,10 @@ def prepare_weather_data(start):
     if token:
         weather_data = fetch_weather_data(token)
         if weather_data:
-            extract_forecast_details(weather_data, start)
+            print(extract_forecast_details(weather_data, start))
 
 # Prepare weather data by calling the function
-prepare_weather_data(startSize)
+prepare_weather_data(float(startSize))
 
 # Load data for training and prediction
 data = pd.read_csv('data/historical/CompleteData.csv', sep=';')
@@ -56,5 +57,7 @@ def predict():
     model = pickle.load(open(filename, 'rb'))
     y_pred = model.predict(predictor)
     return y_pred
+
+
 
 print(f"Predicted size: {predict()}")
