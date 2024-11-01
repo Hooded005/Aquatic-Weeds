@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- External CSS -->
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'test.js' %}"></script>
 </head>
 <body>
 
@@ -35,18 +36,35 @@
     <main class="main-content" id="main-content">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <!-- Date Picker Section -->
+            <!-- Inputs Section -->
             <section class="date-picker-section">
-                <h2>Date Picker</h2>
-                <label for="date-picker">Select Date:</label>
-                <input type="date" id="date-picker" name="date-picker">
+                <h2>Inputs</h2>
+                <div class="input-container">
+                    <label for="days-input">Select the amount of days:</label>
+                    <input type="text" id="days-input" name="days-input" class="textbox">
+                </div>
+                <div class="input-container">
+                    <label for="start-size-input">Enter start size:</label>
+                    <input type="text" id="start-size-input" name="start-size-input" class="textbox">
+                </div>
+                <div class="input-container">
+                    <a href="https://davidkinsler123.users.earthengine.app/view/macrophyte-monitoring-tool" target=”_blank” id="hyperlink-button" class="button">Get Known Coverage</a> <!-- Make button a hyperlink -->
+                </div>
             </section>
 
-            <!-- Patch Info Section -->
+            <!-- Data Section -->
             <section class="patch-info-section">
-                <h2>Patch and Map Info</h2>
-                <!-- Placeholder content -->
-                <p>Details about selected patches and maps will appear here.</p>
+                <h2>Data</h2>
+                <!-- Display Area -->
+                <div class="display-area">
+                    <p>Display Area</p>
+                </div>
+
+                <!-- Buttons -->
+                <div class="buttons-container">
+                    <button id="calculate-button" class="button">Calculate</button>
+                    <button id="clear-output-button" class="button">Clear Output</button>
+                </div>
             </section>
         </aside>
 
@@ -54,21 +72,26 @@
         <section class="content-area">
             <!-- Map Section -->
             <div class="map-section" tabindex="0" role="img" aria-label="Interactive map">
-                <p>Map</p>
-                <p>Click on patches to see extra info</p>
+                <button id="left-button" class="map-nav-button left-button" aria-label="Select previous map">
+                    &#8592; <!-- Left arrow symbol -->
+                </button>
+                <p class="map-title">Map 1</p>
+                <button id="right-button" class="map-nav-button right-button" aria-label="Select next map">
+                    &#8594; <!-- Right arrow symbol -->
+                </button>
             </div>
         </section>
     </main>
-                    <!-- Info Section -->
-                    <div class="info-section">
-                        <h2>Additional Information</h2>
-                        <p>Extra info such as average daily weather will be displayed here.</p>
-                    </div>
+    
+    <!-- Info Section -->
+    <div class="info-section">
+        <h2>Additional Information</h2>
+        <p>Extra info such as average daily weather will be displayed here.</p>
+        <p class="fine-print">The further in the future you want to display, the more inaccurate it will be.</p>
+    </div>
                     
     <!-- ARIA Live Region for Announcements -->
     <div id="color-scheme-announcement" aria-live="polite" class="visually-hidden"></div>
 
-    <!-- External JavaScript -->
-    <script href="{% static 'app.js' %}"></script>
 </body>
 </html>
