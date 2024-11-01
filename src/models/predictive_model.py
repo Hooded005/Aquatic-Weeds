@@ -13,7 +13,7 @@ from sklearn.metrics import mean_squared_error
 import pickle
 
 startSize = input("What is the first start size: ")
-arraySize = [];
+days = int(days)
 
 # Fetch and process weather data for predictions
 def prepare_weather_data(start):
@@ -21,20 +21,21 @@ def prepare_weather_data(start):
     if token:
         weather_data = fetch_weather_data(token)
         if weather_data:
-            print(extract_forecast_details(weather_data, start))
+            return extract_forecast_details(weather_data, start)
 
+weather = [];
 # Prepare weather data by calling the function
-prepare_weather_data(float(startSize))
+for i in range(days):
+    weather.append(prepare_weather_data(float(startSize))[i])
 
 # Load data for training and prediction
 data = pd.read_csv('data/historical/CompleteData.csv', sep=';')
-predictData = pd.read_csv('data/new/weather.csv', sep=';')
+
 filename = "size_Predictor.pkl"
 
 # Split data into features (X) and labels (y)
 X = data[['temp', 'speed', 'direction', 'start_size']]
 y_size = data['end_size']
-predictor = predictData[['temp', 'speed', 'direction', 'start_size']]
 
 def train_model():
     accuracy = 0
@@ -55,9 +56,18 @@ def train_model():
 
 def predict():
     model = pickle.load(open(filename, 'rb'))
-    y_pred = model.predict(predictor)
+    file_path = "data/new/weather.csv"
+    y_pred = 0;
+    
+    for i in range(days):
+        with open(file_path, mode='a', newline='') as file:
+            writer = csv.writer(file, delimiter=";")
+            writer.writerow(weather[i])
+            predictData = pd.read_csv('data/new/weather.csv', sep=';')
+            predictor = predictData[['temp', 'speed', 'direction', 'start_size']]
+            y_pred += model.predict(predictor)
+        
+        print(y_pred)
     return y_pred
-
-
 
 print(f"Predicted size: {predict()}")
