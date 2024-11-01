@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- External CSS -->
     <link rel="stylesheet" href="{% static 'style.css' %}" />
-    <script src="{% static 'test.js' %}"></script>
+
   </head>
   <body>
     <!-- Skip Navigation Link -->
@@ -46,25 +46,32 @@
           <div class="input-container">
             <label for="days-input">Select the amount of days:</label>
             <input
-              type="text"
+              type="number"
+              max="7"
+              min="0"
               id="days-input"
               name="days-input"
               class="textbox"
+              placeholder="Choose Number of Days"
             />
           </div>
           <div class="input-container">
             <label for="start-size-input">Enter start size:</label>
             <input
-              type="text"
+              type="number"
+              max="100"
+              min="0"
               id="start-size-input"
               name="start-size-input"
               class="textbox"
+              placeholder="Starting Hyacinth Patch Size"
+              pattern="(?=[0-9]*[a-fA-F])[a-fA-F0-9]{10}"
             />
           </div>
           <div class="input-container">
             <a
               href="https://davidkinsler123.users.earthengine.app/view/macrophyte-monitoring-tool"
-              target="”_blank”"
+              target=”_blank”
               id="hyperlink-button"
               class="button"
               >Get Known Coverage</a
@@ -138,4 +145,6 @@
       class="visually-hidden"
     ></div>
   </body>
+
+<script src="{% static 'app.js' %}"></script>
 </html>

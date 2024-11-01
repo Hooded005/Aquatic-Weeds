@@ -1,6 +1,14 @@
 // Color Schemes Configuration
 const colorSchemes = {
     default: {
+        '--primary-bg-color': '#2b2d42ff',     /* Space Cadet */
+        '--secondary-bg-color': '#8d99aeff', /* Cool Gray */
+        '--hover-bg-color': '#ef233cff',       /* Red Pantone */
+        '--text-color': '#edf2f4ff',           /* Anti-Flash White */
+        '--body-bg-color': '#edf2f4ff',        /* Anti-Flash White */
+        '--panel-bg-color': '#c20222',       /* Fire Engine Red */
+    },
+    default1: {
         '--primary-bg-color': '#475fdd',
         '--secondary-bg-color': '#5a90e2',
         '--hover-bg-color': '#6d82f2',
@@ -84,3 +92,40 @@ document.addEventListener('DOMContentLoaded', () => {
     applyColorScheme(savedScheme);
     document.getElementById('color-scheme').value = savedScheme;
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("Page-Loaded");
+});
+
+
+
+//Assigning HTML Elements
+//Buttons
+const calculateButton = document.getElementById("calculate-button");
+const clearButton = document.getElementById("clear-output-button");
+//Text Boxes
+const numDaystxt = document.getElementById("days-input")
+const startingPatchSizetxt = document.getElementById("start-size-input")
+
+
+//Events
+//Buttons
+calculateButton.addEventListener("click", calculate);
+clearButton.addEventListener("click", clear);
+//Text Entered
+
+
+
+//Functions
+function calculate()
+{
+    console.log("Calculate Button clicked!");
+    console.log(`Days to calculate: ${numDaystxt.value}, Starting Patch Size: ${startingPatchSizetxt.value}`);
+}
+
+function clear(){
+    console.log("Clear Button clicked!");
+}
+
+
