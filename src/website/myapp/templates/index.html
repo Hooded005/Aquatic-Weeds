@@ -1,97 +1,141 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Dashboard Layout</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- External CSS -->
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
     <script src="{% static 'test.js' %}"></script>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- Skip Navigation Link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Header -->
     <header class="header">
-        <nav class="navbar">
-            <h1 class="navbar-brand">Dashboard</h1>
-            <div class="color-scheme-selector">
-                <label for="color-scheme">Color Scheme:</label>
-                <select id="color-scheme" name="color-scheme" aria-label="Select color scheme" title="Select a color scheme to change the dashboard appearance">
-                    <option value="default">Default</option>
-                    <option value="dark">Dark Mode</option>
-                    <option value="light">Light Mode</option>
-                    <option value="blue">Blue Scheme</option>
-                    <option value="green">Green Scheme</option>
-                    <option value="colorblind">Colorblind Friendly</option>
-                </select>
-            </div>
-        </nav>
+      <nav class="navbar">
+        <h1 class="navbar-brand">Dashboard</h1>
+        <div class="color-scheme-selector">
+          <label for="color-scheme">Color Scheme:</label>
+          <select
+            id="color-scheme"
+            name="color-scheme"
+            aria-label="Select color scheme"
+            title="Select a color scheme to change the dashboard appearance"
+          >
+            <option value="default">Default</option>
+            <option value="dark">Dark Mode</option>
+            <option value="light">Light Mode</option>
+            <option value="blue">Blue Scheme</option>
+            <option value="green">Green Scheme</option>
+            <option value="colorblind">Colorblind Friendly</option>
+          </select>
+        </div>
+      </nav>
     </header>
 
     <!-- Main Content -->
     <main class="main-content" id="main-content">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <!-- Inputs Section -->
-            <section class="date-picker-section">
-                <h2>Inputs</h2>
-                <div class="input-container">
-                    <label for="days-input">Select the amount of days:</label>
-                    <input type="text" id="days-input" name="days-input" class="textbox">
-                </div>
-                <div class="input-container">
-                    <label for="start-size-input">Enter start size:</label>
-                    <input type="text" id="start-size-input" name="start-size-input" class="textbox">
-                </div>
-                <div class="input-container">
-                    <a href="https://davidkinsler123.users.earthengine.app/view/macrophyte-monitoring-tool" target=”_blank” id="hyperlink-button" class="button">Get Known Coverage</a> <!-- Make button a hyperlink -->
-                </div>
-            </section>
-
-            <!-- Data Section -->
-            <section class="patch-info-section">
-                <h2>Data</h2>
-                <!-- Display Area -->
-                <div class="display-area">
-                    <p>Display Area</p>
-                </div>
-
-                <!-- Buttons -->
-                <div class="buttons-container">
-                    <button id='calculate-button' class="button">Calculate</button>
-                    <button id="clear-output-button" class="button">Clear Output</button>
-                </div>
-            </section>
-        </aside>
-
-        <!-- Content Area -->
-        <section class="content-area">
-            <!-- Map Section -->
-            <div class="map-section" tabindex="0" role="img" aria-label="Interactive map">
-                <button id="left-button" class="map-nav-button left-button" aria-label="Select previous map">
-                    &#8592; <!-- Left arrow symbol -->
-                </button>
-                <p class="map-title">Map 1</p>
-                <button id="right-button" class="map-nav-button right-button" aria-label="Select next map">
-                    &#8594; <!-- Right arrow symbol -->
-                </button>
-            </div>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Inputs Section -->
+        <section class="date-picker-section">
+          <h2>Inputs</h2>
+          <div class="input-container">
+            <label for="days-input">Select the amount of days:</label>
+            <input
+              type="text"
+              id="days-input"
+              name="days-input"
+              class="textbox"
+            />
+          </div>
+          <div class="input-container">
+            <label for="start-size-input">Enter start size:</label>
+            <input
+              type="text"
+              id="start-size-input"
+              name="start-size-input"
+              class="textbox"
+            />
+          </div>
+          <div class="input-container">
+            <a
+              href="https://davidkinsler123.users.earthengine.app/view/macrophyte-monitoring-tool"
+              target="”_blank”"
+              id="hyperlink-button"
+              class="button"
+              >Get Known Coverage</a
+            >
+            <!-- Make button a hyperlink -->
+          </div>
         </section>
+
+        <!-- Data Section -->
+        <section class="patch-info-section">
+          <h2>Data</h2>
+          <!-- Display Area -->
+          <div class="display-area">
+            <p>Display Area</p>
+          </div>
+
+          <!-- Buttons -->
+          <div class="buttons-container">
+            <button id="calculate-button" class="button">Calculate</button>
+            <button id="clear-output-button" class="button">
+              Clear Output
+            </button>
+          </div>
+        </section>
+      </aside>
+
+      <!-- Content Area -->
+      <section class="content-area">
+        <!-- Map Section -->
+        <div
+          class="map-section"
+          tabindex="0"
+          role="img"
+          aria-label="Interactive map"
+        >
+          <button
+            id="left-button"
+            class="map-nav-button left-button"
+            aria-label="Select previous map"
+          >
+            &#8592;
+            <!-- Left arrow symbol -->
+          </button>
+          <p class="map-title">Map 1</p>
+          <button
+            id="right-button"
+            class="map-nav-button right-button"
+            aria-label="Select next map"
+          >
+            &#8594;
+            <!-- Right arrow symbol -->
+          </button>
+        </div>
+      </section>
     </main>
-    
+
     <!-- Info Section -->
     <div class="info-section">
-        <h2>Additional Information</h2>
-        <p>Extra info such as average daily weather will be displayed here.</p>
-        <p class="fine-print">The further in the future you want to display, the more inaccurate it will be.</p>
+      <h2>Additional Information</h2>
+      <p>Extra info such as average daily weather will be displayed here.</p>
+      <p class="fine-print">
+        The further in the future you want to display, the more inaccurate it
+        will be.
+      </p>
     </div>
-                    
-    <!-- ARIA Live Region for Announcements -->
-    <div id="color-scheme-announcement" aria-live="polite" class="visually-hidden"></div>
 
-</body>
+    <!-- ARIA Live Region for Announcements -->
+    <div
+      id="color-scheme-announcement"
+      aria-live="polite"
+      class="visually-hidden"
+    ></div>
+  </body>
 </html>
