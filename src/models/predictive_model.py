@@ -47,55 +47,35 @@ def train_model():
 # Train the model before predictions
 """ train_model() """
 
-def fetch_and_prepare_weather_data(start_size):
-    """Fetch weather data and write it with updated start_size for each day."""
-    token = get_access_token()
-    if token:
-        weather_data = fetch_weather_data(token)
-        if weather_data:
-            forecasts = extract_forecast_details(weather_data, start_size)
-            return forecasts  # Extracted weather data for each day
-
-def predict_next_size(start_size):
-    """Predict the next day's end_size using the current start_size."""
-    # Load the trained model
+def predict_next_size(start_size, temp, speed, direction):
     model = pickle.load(open(filename, 'rb'))
-    
-    # Prepare the data row for prediction
-    predict_data = pd.read_csv(weather_file_path, sep=';')
-    predict_line = pd.DataFrame([predict_data[['temp', 'speed', 'direction']].iloc[-1].tolist() + [start_size]],
-                                columns=['temp', 'speed', 'direction', 'start_size'])
-    
-    # Make the prediction
-    predicted_end_size = model.predict(predict_line)[0]  # Get a single prediction
-    return predicted_end_size
+    predict_line = pd.DataFrame([[temp, speed, direction, start_size]], columns=['temp', 'speed', 'direction', 'start_size'])
+    return model.predict(predict_line)[0]
 
-def sequential_prediction(start_size, days):
-    results = []
-    
+# Main function for sequential predictions
+def daily_predictions(start_size, days):
     for day in range(days):
-        # Fetch weather data for each day with the current start_size
-        weather_data = fetch_and_prepare_weather_data(start_size)
-        
-        # Append to weather CSV file
-        with open(weather_file_path, mode='a', newline='') as file:
-            writer = csv.writer(file, delimiter=";")
-            for row in weather_data:
-                # Write temp, speed, direction, and start_size
-                writer.writerow([row[0], row[1], row[2], start_size])
+        token = get_access_token()
+        if token:
+            weather_data = fetch_weather_data(token)
+            if weather_data:
+                # Get forecast for the current day
+                forecasts = extract_forecast_details(weather_data, start_size)
+                day_forecast = forecasts[day]  # Get forecast for the current day
+                temp, speed, direction = day_forecast[0], day_forecast[1], day_forecast[2]
                 
-                # Prepare the output line
-        result = f"Day {day + 1}: Temp {row[0]}, Speed {row[1]}, Direction {row[2]}, Start Size {start_size}, "
-        results.append(result)
+                # Write to CSV for reference
+                with open(weather_file_path, mode='a', newline='') as file:
+                    writer = csv.writer(file, delimiter=";")
+                    start_size = round(start_size, 2)
+                    writer.writerow([temp, speed, direction, start_size])
                 
-        # Predict end_size for the current day and update start_size for the next day
-        predicted_end_size = predict_next_size(start_size)
-        results[-1] += f"Predicted End Size: {predicted_end_size}"
-        start_size = predicted_end_size  # Update start size for next day's prediction
-    return results
+                initial_size = start_size
+                # Predict and set new start size for the next day
+                start_size = predict_next_size(start_size, temp, speed, direction)
+                print(f"Day {day + 1}: Temp {temp}, Speed {speed}, Direction {direction}, Start Size {initial_size:.2f}, Predicted End Size: {start_size:.2f}")
 
-# Example usage:
-for i in range(days):
-    print(f"{sequential_prediction(start_size, days)[i]}\n")
+clear_weather()
 
-clear_weather()  # Clears the CSV file before starting
+# Run daily predictions
+daily_predictions(start_size, days)
