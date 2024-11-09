@@ -15,6 +15,7 @@ import pickle
 # Initial user input
 start_size = float(input("What is the initial start size: "))
 days = int(days)
+dataArray = [];
 
 # File paths
 filename = "size_Predictor.pkl"
@@ -74,8 +75,10 @@ def daily_predictions(start_size, days):
                 # Predict and set new start size for the next day
                 start_size = predict_next_size(start_size, temp, speed, direction)
                 print(f"Day {day + 1}: Temp {temp}, Speed {speed}, Direction {direction}, Start Size {initial_size:.2f}, Predicted End Size: {start_size:.2f}")
+                dataArray.append([day+1, temp, speed, direction, round(float(initial_size),2), round(float(start_size),2)]);
+    return dataArray
 
 clear_weather()
+testArray = daily_predictions(start_size, days)
 
-# Run daily predictions
-daily_predictions(start_size, days)
+print(testArray[4][2])
