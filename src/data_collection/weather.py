@@ -1,15 +1,18 @@
 import requests
 import csv
 import pandas as pd
+import os
+from dotenv import load_dotenv
 
 # Coordinates and API credentials
 latitude = -25.7381
 longitude = 27.8569
 days = input("Enter the amount of days between 1 and 7: ");
 
-client_id = '5mtp9oonnmmvkucj7phr0q3lt6'
-client_secret = 'ob81fml3cjjhhb4kvauhkrs7nc7qc09lapdca6b4besga7v4u0i'
-api_key = 'BgGPhMfSQC8CzgqFci2ze7aKYpG9QcHD351i11Fo'
+load_dotenv()
+client_id = os.getenv("CLIENT_ID")
+client_secret = os.getenv("CLIENT_SECRET")
+api_key = os.getenv("API_KEY")
 token_url = 'https://auth.afrigis.services/oauth2/token'
 weather_api_url = f'https://afrigis.services/weather-forecast/v1/getDailyByCoords?latitude={latitude}&longitude={longitude}&station_count=3&location_buffer=10000&day_count={days}&groups=basic'
 
