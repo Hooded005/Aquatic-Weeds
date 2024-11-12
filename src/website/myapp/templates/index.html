@@ -53,6 +53,7 @@
               name="days-input"
               class="textbox"
               placeholder="Choose Number of Days"
+              size="30%"
             />
           </div>
           <div class="input-container">
@@ -66,6 +67,7 @@
               class="textbox"
               placeholder="Starting Hyacinth Patch Size"
               pattern="(?=[0-9]*[a-fA-F])[a-fA-F0-9]{10}"
+              size="30%"
             />
           </div>
           <div class="input-container">
@@ -95,6 +97,12 @@
               Clear Output
             </button>
           </div>
+
+          <table border="1">
+            <thead> <tr> <th>Date</th> <th>Days From Today</th> <th>Temperature</th> <th>Wind Speed</th> <th>Wind Direction</th> <th>Patch Size</th> </tr> </thead> <tbody> {% for row in data %} <tr> <td>{{ row.Date }}</td> <td>{{ row.Days_From_Today }}</td> <td>{{ row.Temperature }}</td> <td>{{ row.Wind_Speed }}</td> <td>{{ row.Wind_Direction }}</td> <td>{{ row.Patch_Size }}</td> </tr> {% endfor %} </tbody>
+          </table>
+
+
         </section>
       </aside>
 
@@ -107,6 +115,8 @@
           role="img"
           aria-label="Interactive map"
         >
+
+          <img src="{% static 'medium.png' %}">
           <button
             id="left-button"
             class="map-nav-button left-button"
@@ -115,7 +125,7 @@
             &#8592;
             <!-- Left arrow symbol -->
           </button>
-          <p class="map-title">Map 1</p>
+          <p class="map-title">14.46% - Medium Coverage</p>
           <button
             id="right-button"
             class="map-nav-button right-button"
@@ -131,10 +141,12 @@
     <!-- Info Section -->
     <div class="info-section">
       <h2>Additional Information</h2>
-      <p>Extra info such as average daily weather will be displayed here.</p>
+      <!--<p>Extra info such as average daily weather will be displayed here.</p> -->
+
+
       <p class="fine-print">
-        The further in the future you want to display, the more inaccurate it
-        will be.
+        Please note that this data is a prediction, and that predictions further into the future will be less accurate.
+        The displayed pictures, are previously taken images of the Hartebesspoort Dam, and the correlate with various coverage percentages.
       </p>
     </div>
 

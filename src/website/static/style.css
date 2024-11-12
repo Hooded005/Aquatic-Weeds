@@ -2,12 +2,12 @@
 :root {
 
 /* Primary Color Variables */
---primary-bg-color: #005f73;     /* Space Cadet */
+--primary-bg-color: #2b2d42ff;     /* Space Cadet */
 --secondary-bg-color: #8d99aeff;   /* Cool Gray */
---hover-bg-color: #94d2bd;       /* Red Pantone */
+--hover-bg-color: #ef233cff;       /* Red Pantone */
 --text-color: #edf2f4ff;           /* Anti-Flash White */
 --body-bg-color: #edf2f4ff;        /* Anti-Flash White */
---panel-bg-color: #94d2bd;       /* Fire Engine Red */
+--panel-bg-color: #c20222;       /* Fire Engine Red */
 
 /* Font Sizes */
 --font-size-small: 0.9rem;
@@ -271,4 +271,14 @@ textarea:focus {
     --panel-bg-color: #000000;
 }
 
+table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+th, td
+{ padding: 12px; /* Increase padding */
+    text-align: left;
+    border: 1px solid #ddd; /* Add borders */
+    vertical-align: middle;
+    text-align: center; /* Center the text */
+}
+th { background-color: #f2f2f2; }
+td { padding-left: 20px; /* Add larger gap between columns */ margin-right: 10px; /* Add margin to create gap */
 /* Additional Color Schemes can be defined similarly */
