@@ -1,12 +1,12 @@
 // Color Schemes Configuration
 const colorSchemes = {
     default: {
-        '--primary-bg-color': '#2b2d42ff',     /* Space Cadet */
+        '--primary-bg-color': '#005f73',     /* Space Cadet */
         '--secondary-bg-color': '#8d99aeff', /* Cool Gray */
-        '--hover-bg-color': '#ef233cff',       /* Red Pantone */
+        '--hover-bg-color': '#94d2bd',       /* Red Pantone */
         '--text-color': '#edf2f4ff',           /* Anti-Flash White */
         '--body-bg-color': '#edf2f4ff',        /* Anti-Flash White */
-        '--panel-bg-color': '#c20222',       /* Fire Engine Red */
+        '--panel-bg-color': '#94d2bd',       /* Fire Engine Red */
     },
     default1: {
         '--primary-bg-color': '#475fdd',
