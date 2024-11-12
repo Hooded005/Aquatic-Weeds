@@ -20,7 +20,7 @@ def prediction_view(request):
         # Format the predictions data to match the table structure
         data = [
             {
-                'Day': pred[0], 
+                'Date': pred[0], 
                 'Temperature': pred[1],
                 'Wind_Speed': pred[2],
                 'Wind_Direction': pred[3],

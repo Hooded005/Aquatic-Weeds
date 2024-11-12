@@ -11,6 +11,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 import pickle
+import datetime as dt
 
 dataArray = [];
 
@@ -54,9 +55,13 @@ def predict_next_size(start_size, temp, speed, direction):
     predict_line = pd.DataFrame([[temp, speed, direction, start_size]], columns=['temp', 'speed', 'direction', 'start_size'])
     return model.predict(predict_line)[0]
 
+
+
 # Main function for sequential predictions
 def daily_predictions(start_size, days):
     clear_weather()
+    date = dt.date.today();
+    
     for day in range(days):
         token = get_access_token()
         if token:
@@ -73,9 +78,12 @@ def daily_predictions(start_size, days):
                     start_size = round(start_size, 2)
                     writer.writerow([temp, speed, direction, start_size])
                 
-                initial_size = start_size
+                initial_size = start_size    
                 # Predict and set new start size for the next day
                 start_size = predict_next_size(start_size, temp, speed, direction)
-                print(f"Day {day + 1}: Temp {temp}, Speed {speed}, Direction {direction}, Start Size {initial_size:.2f}, Predicted End Size: {start_size:.2f}")
-                dataArray.append([day+1, temp, speed, direction, round(float(initial_size),2), round(float(start_size),2)]);
+                # print(f"Day {day}: Temp {temp}, Speed {speed}, Direction {direction}, Start Size {initial_size:.2f}, Predicted End Size: {start_size:.2f}")
+                dataArray.append([date, temp, speed, direction, round(float(initial_size),2), round(float(start_size),2)]);                
+                date += dt.timedelta(days=1)
     return dataArray
+
+daily_predictions(10, 5);
