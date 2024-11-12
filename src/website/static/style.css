@@ -280,5 +280,5 @@ th, td
     text-align: center; /* Center the text */
 }
 th { background-color: #f2f2f2; }
-td { padding-left: 20px; /* Add larger gap between columns */ margin-right: 10px; /* Add margin to create gap */
+td { padding-left: 20px; /* Add larger gap between columns */ margin-right: 10px; }/* Add margin to create gap */
 /* Additional Color Schemes can be defined similarly */

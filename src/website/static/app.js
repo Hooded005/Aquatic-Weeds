@@ -123,6 +123,11 @@ calculateButton.addEventListener("click", calculate);
 clearButton.addEventListener("click", clear);
 //Text Entered
 
+function calculate(event) {
+    event.preventDefault();
+    console.log("Calculate Button clicked!");
+    console.log(`Days to calculate: ${numDaystxt.value}, Starting Patch Size: ${startingPatchSizetxt.value}`);
+}
 
 
 //Functions

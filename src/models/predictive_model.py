@@ -12,17 +12,18 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 import pickle
 
-# Initial user input
-start_size = float(input("What is the initial start size: "))
-days = int(days)
 dataArray = [];
 
-# File paths
-filename = "size_Predictor.pkl"
-weather_file_path = "data/new/weather.csv"
+# Load historical data for training# Get the absolute path to the root directory
+base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'))
 
-# Load historical data for training
-data = pd.read_csv('data/historical/CompleteData.csv', sep=';')
+# Construct the full path to the CSV file
+csv_path = os.path.join(base_dir, 'data/historical/CompleteData.csv')
+weather_file_path = os.path.join(base_dir, 'data/new/weather.csv')
+filename = os.path.join(base_dir, 'size_Predictor.pkl')
+
+# Load the CSV file
+data = pd.read_csv(csv_path, sep=';')
 X = data[["temp", "speed", "direction", "start_size"]]
 y_size = data['end_size']
 
@@ -55,6 +56,7 @@ def predict_next_size(start_size, temp, speed, direction):
 
 # Main function for sequential predictions
 def daily_predictions(start_size, days):
+    clear_weather()
     for day in range(days):
         token = get_access_token()
         if token:
@@ -77,8 +79,3 @@ def daily_predictions(start_size, days):
                 print(f"Day {day + 1}: Temp {temp}, Speed {speed}, Direction {direction}, Start Size {initial_size:.2f}, Predicted End Size: {start_size:.2f}")
                 dataArray.append([day+1, temp, speed, direction, round(float(initial_size),2), round(float(start_size),2)]);
     return dataArray
-
-clear_weather()
-testArray = daily_predictions(start_size, days)
-
-print(testArray[4][2])

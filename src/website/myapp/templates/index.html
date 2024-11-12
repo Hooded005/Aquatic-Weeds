@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- External CSS -->
     <link rel="stylesheet" href="{% static 'style.css' %}" />
-
   </head>
   <body>
     <!-- Skip Navigation Link -->
@@ -43,37 +42,43 @@
         <!-- Inputs Section -->
         <section class="date-picker-section">
           <h2>Inputs</h2>
-          <div class="input-container">
-            <label for="days-input">Select the amount of days:</label>
-            <input
-              type="number"
-              max="7"
-              min="0"
-              id="days-input"
-              name="days-input"
-              class="textbox"
-              placeholder="Choose Number of Days"
-              size="30%"
-            />
-          </div>
-          <div class="input-container">
-            <label for="start-size-input">Enter start size:</label>
-            <input
-              type="number"
-              max="100"
-              min="0"
-              id="start-size-input"
-              name="start-size-input"
-              class="textbox"
-              placeholder="Starting Hyacinth Patch Size"
-              pattern="(?=[0-9]*[a-fA-F])[a-fA-F0-9]{10}"
-              size="30%"
-            />
-          </div>
+          <form method="POST" action="{% url 'prediction_view' %}">
+            {% csrf_token %}
+            <div class="input-container">
+              <label for="days-input">Select the amount of days:</label>
+              <input
+                type="number"
+                max="7"
+                min="0"
+                id="days-input"
+                name="days_input"
+                class="textbox"
+                placeholder="Choose Number of Days"
+              />
+            </div>
+            <div class="input-container">
+              <label for="start-size-input">Enter start size:</label>
+              <input
+                type="number"
+                max="100"
+                min="0"
+                id="start-size-input"
+                name="start_size_input"
+                class="textbox"
+                placeholder="Starting Hyacinth Patch Size"
+              />
+            </div>
+            <button type="submit" id="calculate-button" class="button">
+              Calculate
+            </button>
+            <button type="button" id="clear-output-button" class="button">
+              Clear Output
+            </button>
+          </form>
           <div class="input-container">
             <a
               href="https://davidkinsler123.users.earthengine.app/view/macrophyte-monitoring-tool"
-              target=”_blank”
+              target="”_blank”"
               id="hyperlink-button"
               class="button"
               >Get Known Coverage</a
@@ -90,19 +95,30 @@
             <p>Display Area</p>
           </div>
 
-          <!-- Buttons -->
-          <div class="buttons-container">
-            <button id="calculate-button" class="button">Calculate</button>
-            <button id="clear-output-button" class="button">
-              Clear Output
-            </button>
-          </div>
-
           <table border="1">
-            <thead> <tr> <th>Date</th> <th>Days From Today</th> <th>Temperature</th> <th>Wind Speed</th> <th>Wind Direction</th> <th>Patch Size</th> </tr> </thead> <tbody> {% for row in data %} <tr> <td>{{ row.Date }}</td> <td>{{ row.Days_From_Today }}</td> <td>{{ row.Temperature }}</td> <td>{{ row.Wind_Speed }}</td> <td>{{ row.Wind_Direction }}</td> <td>{{ row.Patch_Size }}</td> </tr> {% endfor %} </tbody>
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Temperature</th>
+                <th>Wind Speed</th>
+                <th>Wind Direction</th>
+                <th>Patch Size</th>
+                <th>Predicted End Size</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in data %}
+              <tr>
+                <td>{{ row.Day }}</td>
+                <td>{{ row.Temperature }}</td>
+                <td>{{ row.Wind_Speed }}</td>
+                <td>{{ row.Wind_Direction }}</td>
+                <td>{{ row.Start_Size }}</td>
+                <td>{{ row.Predicted_End_Size }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
           </table>
-
-
         </section>
       </aside>
 
@@ -115,8 +131,7 @@
           role="img"
           aria-label="Interactive map"
         >
-
-          <img src="{% static 'medium.png' %}">
+          <img src="{% static 'medium.png' %}" />
           <button
             id="left-button"
             class="map-nav-button left-button"
@@ -143,10 +158,11 @@
       <h2>Additional Information</h2>
       <!--<p>Extra info such as average daily weather will be displayed here.</p> -->
 
-
       <p class="fine-print">
-        Please note that this data is a prediction, and that predictions further into the future will be less accurate.
-        The displayed pictures, are previously taken images of the Hartebesspoort Dam, and the correlate with various coverage percentages.
+        Please note that this data is a prediction, and that predictions further
+        into the future will be less accurate. The displayed pictures, are
+        previously taken images of the Hartebesspoort Dam, and the correlate
+        with various coverage percentages.
       </p>
     </div>
 
@@ -158,5 +174,5 @@
     ></div>
   </body>
 
-<script src="{% static 'app.js' %}"></script>
+  <script src="{% static 'app.js' %}"></script>
 </html>

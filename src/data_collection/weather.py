@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 # Coordinates and API credentials
 latitude = -25.7381
 longitude = 27.8569
-days = input("Enter the amount of days between 1 and 7: ");
+days = 7
 
 load_dotenv()
 client_id = os.getenv("CLIENT_ID")
@@ -15,6 +15,10 @@ client_secret = os.getenv("CLIENT_SECRET")
 api_key = os.getenv("API_KEY")
 token_url = 'https://auth.afrigis.services/oauth2/token'
 weather_api_url = f'https://afrigis.services/weather-forecast/v1/getDailyByCoords?latitude={latitude}&longitude={longitude}&station_count=3&location_buffer=10000&day_count={days}&groups=basic'
+
+# Load historical data for training# Get the absolute path to the root directory
+base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'))
+file_path = os.path.join(base_dir, 'data/new/weather.csv')
 
 def get_access_token():
     """Fetch the OAuth2 token."""
@@ -49,7 +53,6 @@ def extract_forecast_details(weather_data, predicted_size):
     """Extract forecast details and save them to a CSV file."""
     if 'result' in weather_data:
         forecasts = weather_data['result'][0]['forecasts']
-        file_path = "data/new/weather.csv"
         weather_Data = [];
         counter = 0
         
@@ -66,7 +69,6 @@ def extract_forecast_details(weather_data, predicted_size):
     return weather_Data;
                 
 def clear_weather():
-    file_path = "data/new/weather.csv"
     # Load the CSV file to get headers
     data = pd.read_csv(file_path)        
     # Create a DataFrame with only the header
