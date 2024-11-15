@@ -1,0 +1,44 @@
+[
+    {
+        "temperature": 29.0,
+        "wind_speed": 5.0,
+        "wind_direction": 22,
+        "predicted_size": 8
+    },
+    {
+        "temperature": 32.0,
+        "wind_speed": 5.0,
+        "wind_direction": 315,
+        "predicted_size": 8
+    },
+    {
+        "temperature": 36.0,
+        "wind_speed": 5.0,
+        "wind_direction": 0,
+        "predicted_size": 8
+    },
+    {
+        "temperature": 36.0,
+        "wind_speed": 5.0,
+        "wind_direction": 0,
+        "predicted_size": 8
+    },
+    {
+        "temperature": 36.0,
+        "wind_speed": 5.0,
+        "wind_direction": 45,
+        "predicted_size": 8
+    },
+    {
+        "temperature": 34.0,
+        "wind_speed": 10.0,
+        "wind_direction": 45,
+        "predicted_size": 8
+    },
+    {
+        "temperature": 34.0,
+        "wind_speed": 5.0,
+        "wind_direction": 22,
+        "predicted_size": 8
+    }
+]

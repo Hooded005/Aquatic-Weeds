@@ -79,9 +79,53 @@ def daily_predictions(start_size, days):
                 initial_size = start_size    
                 # Predict and set new start size for the next day
                 start_size = predict_next_size(start_size, temp, speed, direction)
+                
+                if start_size - initial_size >= 3:
+                    start_size = initial_size + 3;
+                
                 print(f"Day {day}: Temp {temp}, Speed {speed}, Direction {direction}, Start Size {initial_size:.2f}, Predicted End Size: {start_size:.2f}")
                 dataArray.append([date, temp, speed, direction, round(float(initial_size),2), round(float(start_size),2)]);                
                 date += dt.timedelta(days=1)
     return dataArray
 
-daily_predictions(8, 4);
+# ==============================JSON FILE BACKUP===================================
+def daily_predictions_from_json(start_size, days):
+    """
+    Generate daily predictions from a JSON file, dynamically updating the start size.
+    """
+    clear_weather()
+    date = dt.date.today()
+    dataArray = []
+    
+    # Extract forecast details from the JSON file
+    forecasts = extract_sample_forecast_details(start_size)
+    
+    for day in range(days):
+        # Get forecast for the current day
+        day_forecast = forecasts[day]  # Get forecast for the current day
+        temp, speed, direction = day_forecast[0], day_forecast[1], day_forecast[2]
+        
+        # Write to CSV for reference
+        with open(weather_file_path, mode='a', newline='') as file:
+            writer = csv.writer(file, delimiter=";")
+            start_size = round(start_size, 2)
+            writer.writerow([temp, speed, direction, start_size])
+        
+        initial_size = start_size
+        # Predict and set new start size for the next day
+        start_size = predict_next_size(start_size, temp, speed, direction)
+        print("Predicted size before adjusting: ", initial_size, start_size)
+        
+        if start_size - initial_size >= 3:
+            start_size = initial_size + 3;
+        
+        print(f"Day {day + 1}: Temp {temp}, Speed {speed}, Direction {direction}, Start Size {initial_size:.2f}, Predicted End Size: {start_size:.2f}")
+        
+        # Append data to the array
+        dataArray.append([date, temp, speed, direction, round(float(initial_size), 2), round(float(start_size), 2)])
+        date += dt.timedelta(days=1)  # Increment the date
+    
+    return dataArray
+
+# ==============================JSON FILE BACKUP===================================
+daily_predictions_from_json(10, 7);
