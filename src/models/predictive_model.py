@@ -85,5 +85,3 @@ def daily_predictions(start_size, days):
                 dataArray.append([date, temp, speed, direction, round(float(initial_size),2), round(float(start_size),2)]);                
                 date += dt.timedelta(days=1)
     return dataArray
-
-daily_predictions(10, 5);

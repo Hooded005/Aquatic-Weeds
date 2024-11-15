@@ -2,12 +2,12 @@
 :root {
 
 /* Primary Color Variables */
---primary-bg-color: #2b2d42ff;     /* Space Cadet */
+--primary-bg-color: #005f73;     /* Space Cadet */
 --secondary-bg-color: #8d99aeff;   /* Cool Gray */
---hover-bg-color: #ef233cff;       /* Red Pantone */
+--hover-bg-color: #94d2bd;       /* Red Pantone */
 --text-color: #edf2f4ff;           /* Anti-Flash White */
 --body-bg-color: #edf2f4ff;        /* Anti-Flash White */
---panel-bg-color: #c20222;       /* Fire Engine Red */
+--panel-bg-color: #94d2bd;       /* Fire Engine Red */
 
 /* Font Sizes */
 --font-size-small: 0.9rem;
@@ -271,14 +271,117 @@ textarea:focus {
     --panel-bg-color: #000000;
 }
 
-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-th, td
-{ padding: 12px; /* Increase padding */
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin: 20px 0; 
+    color: #000000;
+}
+th, td{ 
+    padding: 12px; /* Increase padding */
     text-align: left;
     border: 1px solid #ddd; /* Add borders */
     vertical-align: middle;
     text-align: center; /* Center the text */
 }
-th { background-color: #f2f2f2; }
-td { padding-left: 20px; /* Add larger gap between columns */ margin-right: 10px; }/* Add margin to create gap */
+th { 
+    background-color: #f2f2f2; 
+}
+td { 
+    padding-left: 20px; /* Add larger gap between columns */ 
+    margin-right: 10px; 
+}/* Add margin to create gap */
 /* Additional Color Schemes can be defined similarly */
+
+.input-container {
+    display: flex; /* Flex layout for alignment */
+    flex-direction: column; /* Stack the label and input */
+    margin-bottom: var(--spacing-base); /* Space between containers */
+    gap: var(--spacing-small); /* Space between label and input */
+}
+
+.input-container label {
+    font-size: var(--font-size-base); /* Match font size to other elements */
+    color: var(--primary-bg-color); /* Use a primary color for consistency */
+    margin-bottom: var(--spacing-small); /* Space below the label */
+}
+
+.input-container input {
+    padding: var(--spacing-small); /* Inner padding for the input */
+    font-size: var(--font-size-base); /* Font size for readability */
+    border: 1px solid var(--secondary-bg-color); /* Subtle border */
+    border-radius: var(--border-radius); /* Rounded corners */
+    background-color: var(--body-bg-color); /* Match the background */
+    color: var(--text-color); /* Match text color */
+    transition: all 0.2s ease-in-out; /* Smooth hover effect */
+    color: black;
+}
+
+.input-container input:hover,
+.input-container input:focus {
+    border-color: var(--hover-bg-color); /* Highlight border on hover/focus */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 5px var(--hover-bg-color); /* Add a soft glow */
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--primary-bg-color); /* Space Cadet */
+    color: var(--text-color); /* Anti-Flash White */
+    border: none;
+    border-radius: var(--border-radius); /* Consistent border-radius */
+    padding: var(--spacing-small) var(--spacing-base); /* Comfortable padding */
+    font-size: var(--font-size-base); /* Base font size */
+    font-weight: bold; /* Make the text bold */
+    text-align: center;
+    cursor: pointer; /* Change cursor to pointer on hover */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+.button:hover {
+    background-color: var(--hover-bg-color); /* Red Pantone for hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+    border: 1px solid black;
+}
+
+.button:focus {
+    outline: 3px solid var(--hover-bg-color); /* Accessible focus outline */
+    outline-offset: 2px;
+}
+
+.button:active {
+    background-color: var(--secondary-bg-color); /* Cool Gray for active */
+    transform: scale(0.95); /* Slightly shrink on click */
+}
+
+/* Add specific styling for disabled buttons */
+.button:disabled {
+    background-color: #cccccc; /* Light gray for disabled state */
+    color: #666666; /* Dark gray text for disabled state */
+    cursor: not-allowed; /* Change cursor to show it's not clickable */
+    opacity: 0.6; /* Make it appear dimmed */
+}
+
+/* Additional styling for buttons with icons */
+.button-with-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-small); /* Space between text and icon */
+}
+
+.button-with-icon i {
+    font-size: 1.2rem; /* Adjust icon size */
+}
+
+/* Style for secondary buttons */
+.secondary-button {
+    background-color: var(--secondary-bg-color); /* Cool Gray */
+    color: var(--primary-bg-color); /* Space Cadet */
+}
+
+.secondary-button:hover {
+    background-color: var(--hover-bg-color); /* Red Pantone for hover */
+    color: var(--text-color); /* Anti-Flash White */
+}

@@ -68,14 +68,14 @@
                 placeholder="Starting Hyacinth Patch Size"
               />
             </div>
+          </form>
+          <div class="input-container">
             <button type="submit" id="calculate-button" class="button">
               Calculate
             </button>
             <button type="button" id="clear-output-button" class="button">
               Clear Output
             </button>
-          </form>
-          <div class="input-container">
             <a
               href="https://davidkinsler123.users.earthengine.app/view/macrophyte-monitoring-tool"
               target="”_blank”"
@@ -90,10 +90,6 @@
         <!-- Data Section -->
         <section class="patch-info-section">
           <h2>Data</h2>
-          <!-- Display Area -->
-          <div class="display-area">
-            <p>Display Area</p>
-          </div>
 
           <table border="1">
             <thead>
@@ -132,20 +128,12 @@
           aria-label="Interactive map"
         >
           <img src="{% static 'medium.png' %}" />
-          <button
-            id="left-button"
-            class="map-nav-button left-button"
-            aria-label="Select previous map"
-          >
+          <button class="button" aria-label="Select previous map">
             &#8592;
             <!-- Left arrow symbol -->
           </button>
           <p class="map-title">14.46% - Medium Coverage</p>
-          <button
-            id="right-button"
-            class="map-nav-button right-button"
-            aria-label="Select next map"
-          >
+          <button class="button" aria-label="Select next map">
             &#8594;
             <!-- Right arrow symbol -->
           </button>

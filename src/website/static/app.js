@@ -3,32 +3,16 @@ const colorSchemes = {
     default: {
         '--primary-bg-color': '#2b2d42ff',     /* Space Cadet */
         '--secondary-bg-color': '#8d99aeff', /* Cool Gray */
-        '--hover-bg-color': '#ef233cff',       /* Red Pantone */
+        '--hover-bg-color': '#94d2bd',       /* Red Pantone */
         '--text-color': '#edf2f4ff',           /* Anti-Flash White */
         '--body-bg-color': '#edf2f4ff',        /* Anti-Flash White */
-        '--panel-bg-color': '#c20222',       /* Fire Engine Red */
-    },
-    default1: {
-        '--primary-bg-color': '#2b2d42ff',     /* Space Cadet */
-        '--secondary-bg-color': '#8d99aeff', /* Cool Gray */
-        '--hover-bg-color': '#ef233cff',       /* Red Pantone */
-        '--text-color': '#edf2f4ff',           /* Anti-Flash White */
-        '--body-bg-color': '#edf2f4ff',        /* Anti-Flash White */
-        '--panel-bg-color': '#c20222',       /* Fire Engine Red */
-    },
-    default2: {
-        '--primary-bg-color': '#475fdd',
-        '--secondary-bg-color': '#5a90e2',
-        '--hover-bg-color': '#6d82f2',
-        '--text-color': '#ffffff',
-        '--body-bg-color': '#f0f0f5',
-        '--panel-bg-color': '#f2f7ff',
+        '--panel-bg-color': '#94d2bd',       /* Fire Engine Red */
     },
     dark: {
         '--primary-bg-color': '#1f1f1f',
         '--secondary-bg-color': '#2b2b2b',
         '--hover-bg-color': '#373737',
-        '--text-color': '#e0e0e0',
+        '--text-color': '#edf2f4ff',
         '--body-bg-color': '#121212',
         '--panel-bg-color': '#1e1e1e',
     },
@@ -111,16 +95,10 @@ document.addEventListener("DOMContentLoaded", function() {
 //Assigning HTML Elements
 //Buttons
 const calculateButton = document.getElementById("calculate-button");
-const clearButton = document.getElementById("clear-output-button");
-//Text Boxes
-const numDaystxt = document.getElementById("days-input")
-const startingPatchSizetxt = document.getElementById("start-size-input")
-
 
 //Events
 //Buttons
 calculateButton.addEventListener("click", calculate);
-clearButton.addEventListener("click", clear);
 //Text Entered
 
 function calculate(event) {
@@ -129,7 +107,6 @@ function calculate(event) {
     console.log(`Days to calculate: ${numDaystxt.value}, Starting Patch Size: ${startingPatchSizetxt.value}`);
 }
 
-
 //Functions
 function calculate()
 {
@@ -137,8 +114,25 @@ function calculate()
     console.log(`Days to calculate: ${numDaystxt.value}, Starting Patch Size: ${startingPatchSizetxt.value}`);
 }
 
-function clear(){
+// Select the input fields and the table body
+const daysInput = document.getElementById("days-input");
+const startSizeInput = document.getElementById("start-size-input");
+const tableBody = document.querySelector("table tbody");
+
+// Clear function
+function clear() {
     console.log("Clear Button clicked!");
+
+    // Reset the input fields
+    daysInput.value = "";
+    startSizeInput.value = "";
+
+    // Clear the table body content
+    tableBody.innerHTML = "";
+
+    // Optionally, log a message to confirm the action
+    console.log("All inputs and outputs have been cleared.");
 }
 
-
+const clearButton = document.getElementById("clear-output-button");
+clearButton.addEventListener("click", clear);
