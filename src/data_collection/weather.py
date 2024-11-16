@@ -92,7 +92,7 @@ def json_to_csv():
         # Write the data (values from each JSON object)
         for row in data:
             writer.writerow(row.values())
-    print("JSON data has been successfully converted to CSV.")
+    # print("JSON data has been successfully converted to CSV.")
 
 def extract_json():
     # Initialize an empty array to store the extracted data

@@ -111,13 +111,13 @@ def daily_predictions_json(start_size, days):
         # Predict and set new start size for the next day
         start_size = predict_next_size(start_size, temp, speed, direction)
         
-        print(f"Initial size: {initial_size}"
-              f"\nPredicted size: {start_size}")
+        """ print(f"Initial size: {initial_size}"
+              f"\nPredicted size: {start_size}") """
                 
         if start_size - initial_size >= 3:
             start_size = initial_size + 3;
                     
-        print(f"Day {date}: Temp {temp}, Speed {speed}, Direction {direction}, Start Size {initial_size:.2f}, Predicted End Size: {start_size:.2f}")
+        # print(f"Day {date}: Temp {temp}, Speed {speed}, Direction {direction}, Start Size {initial_size:.2f}, Predicted End Size: {start_size:.2f}")
         dataArray.append([date, temp, speed, direction, round(float(initial_size),2), round(float(start_size),2)]);                
         date += dt.timedelta(days=1)
         avgSize += start_size
@@ -132,5 +132,3 @@ def send_Alert(avgSize):
         return "Water Hyacinth Mat is growing, monitoring is recommended"
     else:
         return "Water Hyacinth Mat is not maintainable, action is needed"
-
-daily_predictions_json(6, 5);
