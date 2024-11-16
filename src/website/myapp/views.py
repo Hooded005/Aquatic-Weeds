@@ -33,5 +33,6 @@ def prediction_view(request):
             } 
             for pred in predictions
         ]
+        predictions.clear()
     
     return render(request, 'index.html', {'data': data, 'alert_message': alert_message})
