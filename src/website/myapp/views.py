@@ -15,7 +15,7 @@ def prediction_view(request):
         days = int(request.POST.get('days_input', 0))
         
         # Call your prediction model function
-        predictions = daily_predictions(start_size, days)
+        predictions, avg_Size = daily_predictions_from_json(start_size, days)
         
         # Format the predictions data to match the table structure
         data = [
@@ -29,5 +29,6 @@ def prediction_view(request):
             } 
             for pred in predictions
         ]
+        print(data)
     
     return render(request, 'index.html', {'data': data})

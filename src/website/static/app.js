@@ -90,34 +90,27 @@ document.addEventListener("DOMContentLoaded", function() {
   console.log("Page-Loaded");
 });
 
-
-
 //Assigning HTML Elements
 //Buttons
 const calculateButton = document.getElementById("calculate-button");
-
-//Events
-//Buttons
 calculateButton.addEventListener("click", calculate);
 //Text Entered
+const daysInput = document.getElementById("days-input");
+const startSizeInput = document.getElementById("start-size-input");
+const tableBody = document.querySelector("table tbody");
 
 function calculate(event) {
     event.preventDefault();
     console.log("Calculate Button clicked!");
-    console.log(`Days to calculate: ${numDaystxt.value}, Starting Patch Size: ${startingPatchSizetxt.value}`);
+    console.log(`Days to calculate: ${daysInput.value}, Starting Patch Size: ${startSizeInput.value}`);
 }
 
 //Functions
 function calculate()
 {
     console.log("Calculate Button clicked!");
-    console.log(`Days to calculate: ${numDaystxt.value}, Starting Patch Size: ${startingPatchSizetxt.value}`);
+    console.log(`Days to calculate: ${daysInput.value}, Starting Patch Size: ${startSizeInput.value}`);
 }
-
-// Select the input fields and the table body
-const daysInput = document.getElementById("days-input");
-const startSizeInput = document.getElementById("start-size-input");
-const tableBody = document.querySelector("table tbody");
 
 // Clear function
 function clear() {
