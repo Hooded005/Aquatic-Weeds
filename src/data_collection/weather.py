@@ -1,4 +1,5 @@
 import requests
+import json
 import csv
 import pandas as pd
 import os
@@ -19,6 +20,7 @@ weather_api_url = f'https://afrigis.services/weather-forecast/v1/getDailyByCoord
 # Load historical data for training# Get the absolute path to the root directory
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'))
 file_path = os.path.join(base_dir, 'data/new/weather.csv')
+json_path = os.path.join(base_dir, 'data/new/weather.json')
 
 def get_access_token():
     """Fetch the OAuth2 token."""
@@ -75,3 +77,38 @@ def clear_weather():
     cleared_data = pd.DataFrame(columns=data.columns)        
     # Save back to the CSV, overwriting existing data but keeping the header
     cleared_data.to_csv(file_path, index=False)
+    
+def json_to_csv():
+    with open(json_path, 'r') as json_file:
+        data = json.load(json_file)
+
+# Open the CSV file in write mode
+    with open(file_path, 'w', newline='') as csv_file:
+        writer = csv.writer(csv_file, delimiter=";")
+        # Write the header (keys from the JSON objects)
+        header = data[0].keys() if data else []
+        writer.writerow(header)
+
+        # Write the data (values from each JSON object)
+        for row in data:
+            writer.writerow(row.values())
+    print("JSON data has been successfully converted to CSV.")
+
+def extract_json():
+    # Initialize an empty array to store the extracted data
+    extracted_data = []
+
+    # Load the JSON data from the file
+    with open(json_path, 'r') as json_file:
+        data = json.load(json_file)
+
+        # Extract specific fields from each entry in the JSON
+        for entry in data:
+            temp = entry.get('temp')
+            speed = entry.get('speed')
+            direction = entry.get('direction')
+            start_size = entry.get('start_size')
+            
+            # Append the extracted data as a list to the array
+            extracted_data.append([temp, speed, direction, start_size])
+    return extracted_data

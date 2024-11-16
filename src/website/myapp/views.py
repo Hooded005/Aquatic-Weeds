@@ -16,7 +16,7 @@ def prediction_view(request):
         days = int(request.POST.get('days_input', 0))
         
         # Call your prediction model function
-        predictions, avg_size = daily_predictions(start_size, days)
+        predictions, avg_size = daily_predictions_json(start_size, days)
         
         # Generate alert message
         alert_message = send_Alert(avg_size)

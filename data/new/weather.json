@@ -1,44 +1,44 @@
 [
     {
-        "temperature": 29.0,
-        "wind_speed": 5.0,
-        "wind_direction": 22,
-        "predicted_size": 8
+        "temp": 29.0,
+        "speed": 3.0,
+        "direction": 22,
+        "start_size": 8
     },
     {
-        "temperature": 32.0,
-        "wind_speed": 5.0,
-        "wind_direction": 315,
-        "predicted_size": 8
+        "temp": 32.0,
+        "speed": 8.0,
+        "direction": 315,
+        "start_size": 8
     },
     {
-        "temperature": 36.0,
-        "wind_speed": 5.0,
-        "wind_direction": 0,
-        "predicted_size": 8
+        "temp": 36.0,
+        "speed": 7.0,
+        "direction": 0,
+        "start_size": 8
     },
     {
-        "temperature": 36.0,
-        "wind_speed": 5.0,
-        "wind_direction": 0,
-        "predicted_size": 8
+        "temp": 26.0,
+        "speed": 5.0,
+        "direction": 0,
+        "start_size": 8
     },
     {
-        "temperature": 36.0,
-        "wind_speed": 5.0,
-        "wind_direction": 45,
-        "predicted_size": 8
+        "temp": 24.0,
+        "speed": 12.0,
+        "direction": 45,
+        "start_size": 8
     },
     {
-        "temperature": 34.0,
-        "wind_speed": 10.0,
-        "wind_direction": 45,
-        "predicted_size": 8
+        "temp": 21.0,
+        "speed": 10.0,
+        "direction": 45,
+        "start_size": 8
     },
     {
-        "temperature": 34.0,
-        "wind_speed": 5.0,
-        "wind_direction": 22,
-        "predicted_size": 8
+        "temp": 18.0,
+        "speed": 15.0,
+        "direction": 22,
+        "start_size": 8
     }
 ]

@@ -55,8 +55,6 @@ def predict_next_size(start_size, temp, speed, direction):
     predict_line = pd.DataFrame([[temp, speed, direction, start_size]], columns=['temp', 'speed', 'direction', 'start_size'])
     return model.predict(predict_line)[0]
 
-
-
 # Main function for sequential predictions
 def daily_predictions(start_size, days):
     clear_weather()
@@ -93,6 +91,40 @@ def daily_predictions(start_size, days):
     avgSize = round(avgSize/days,2)            
     return dataArray, avgSize
 
+# ============================JSON BACKUP=====================================
+def daily_predictions_json(start_size, days):
+    clear_weather()
+    date = dt.date.today();
+    avgSize = 0;
+    
+    for day in range(days):
+        forecasts = extract_json()
+        day_forecast = forecasts[day]  # Get forecast for the current day
+        temp, speed, direction = day_forecast[0], day_forecast[1], day_forecast[2]
+        # Write to CSV for reference
+        with open(weather_file_path, mode='a', newline='') as file:
+            writer = csv.writer(file, delimiter=";")
+            start_size = round(start_size, 2)
+            writer.writerow([temp, speed, direction, start_size])
+                
+        initial_size = start_size    
+        # Predict and set new start size for the next day
+        start_size = predict_next_size(start_size, temp, speed, direction)
+        
+        print(f"Initial size: {initial_size}"
+              f"\nPredicted size: {start_size}")
+                
+        if start_size - initial_size >= 3:
+            start_size = initial_size + 3;
+                    
+        print(f"Day {date}: Temp {temp}, Speed {speed}, Direction {direction}, Start Size {initial_size:.2f}, Predicted End Size: {start_size:.2f}")
+        dataArray.append([date, temp, speed, direction, round(float(initial_size),2), round(float(start_size),2)]);                
+        date += dt.timedelta(days=1)
+        avgSize += start_size
+    avgSize = round(avgSize/days,2)            
+    return dataArray, avgSize
+# ============================JSON BACKUP=====================================
+
 def send_Alert(avgSize):
     if avgSize < 10:
         return "Water Hyacinth Mat is maintainable, no action is needed"
@@ -101,4 +133,4 @@ def send_Alert(avgSize):
     else:
         return "Water Hyacinth Mat is not maintainable, action is needed"
 
-daily_predictions(10, 5);
+daily_predictions_json(6, 5);
