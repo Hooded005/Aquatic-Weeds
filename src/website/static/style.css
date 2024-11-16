@@ -170,7 +170,7 @@ body {
 
 .sidebar h2 {
     margin-bottom: var(--spacing-small);
-    color: var(--primary-bg-color);
+    color: var(--text-color);
 }
 
 /* Content Area */
