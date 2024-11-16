@@ -68,7 +68,7 @@
                 placeholder="Starting Hyacinth Patch Size"
               />
             </div>
-          </form>
+
           <div class="input-container">
             <button type="submit" id="calculate-button" class="button">
               Calculate
@@ -81,15 +81,17 @@
               target="”_blank”"
               id="hyperlink-button"
               class="button"
-              >Get Known Coverage</a
-            >
-            <!-- Make button a hyperlink -->
+              >Get Known Coverage</a>
           </div>
         </section>
 
         <!-- Data Section -->
         <section class="patch-info-section">
           <h2>Data</h2>
+          <!-- Display Area -->
+          <div class="display-area">
+            <p>Display Area</p>
+          </div>
 
           <table border="1">
             <thead>
@@ -128,33 +130,39 @@
           aria-label="Interactive map"
         >
           <img src="{% static 'medium.png' %}" />
-        <div class = "Justifiedmap">
-          <button class="button" aria-label="Select previous map">
-            &#8592;
-            <!-- Left arrow symbol -->
-          </button>
-          <p class="map-title">14.46% - Medium Coverage</p>
-          <button class="button" aria-label="Select next map">
-            &#8594;
-            <!-- Right arrow symbol -->
-          </button>
-        </div>
-        </div>
-      </section>
-    </main>
+          <div class = "Justifiedmap">
+            <button class="button" aria-label="Select previous map">
+              &#8592;
+              <!-- Left arrow symbol -->
+            </button>
+            <p class="map-title">14.46% - Medium Coverage</p>
+            <button class="button" aria-label="Select next map">
+              &#8594;
+              <!-- Right arrow symbol -->
+            </button>
+          </div>
+          </div>
+        </section>
+      </main>
 
     <!-- Info Section -->
     <div class="info-section">
       <h2>Additional Information</h2>
-      <!--<p>Extra info such as average daily weather will be displayed here.</p> -->
-
+      <!-- Alert message dynamically inserted here -->
+      <p class="fine-print">
+        {% if alert_message %}
+          {{ alert_message }}
+        {% endif %}
+      </p>
+    
       <p class="fine-print">
         Please note that this data is a prediction, and that predictions further
-        into the future will be less accurate. The displayed pictures, are
-        previously taken images of the Hartebesspoort Dam, and the correlate
+        into the future will be less accurate. The displayed pictures are
+        previously taken images of the Hartbeespoort Dam and correlate
         with various coverage percentages.
       </p>
     </div>
+    
 
     <!-- ARIA Live Region for Announcements -->
     <div

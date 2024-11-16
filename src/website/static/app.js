@@ -4,7 +4,7 @@ const colorSchemes = {
         '--primary-bg-color': '#2b2d42ff',     /* Space Cadet */
         '--secondary-bg-color': '#8d99aeff', /* Cool Gray */
         '--hover-bg-color': '#94d2bd',       /* Red Pantone */
-        '--text-color': '#edf2f4ff',           /* Anti-Flash White */
+        '--text-color': '#ffffff',           /* Anti-Flash White */
         '--body-bg-color': '#edf2f4ff',        /* Anti-Flash White */
         '--panel-bg-color': '#94d2bd',       /* Fire Engine Red */
     },
@@ -12,7 +12,7 @@ const colorSchemes = {
         '--primary-bg-color': '#1f1f1f',
         '--secondary-bg-color': '#2b2b2b',
         '--hover-bg-color': '#373737',
-        '--text-color': '#edf2f4ff',
+        '--text-color': '#ffffff',
         '--body-bg-color': '#121212',
         '--panel-bg-color': '#1e1e1e',
     },
@@ -20,7 +20,7 @@ const colorSchemes = {
         '--primary-bg-color': '#ffffff',
         '--secondary-bg-color': '#f5f5f5',
         '--hover-bg-color': '#e0e0e0',
-        '--text-color': '#333333',
+        '--text-color': '#000000',
         '--body-bg-color': '#ffffff',
         '--panel-bg-color': '#f9f9f9',
     },
@@ -28,7 +28,7 @@ const colorSchemes = {
         '--primary-bg-color': '#1e90ff',
         '--secondary-bg-color': '#00bfff',
         '--hover-bg-color': '#87cefa',
-        '--text-color': '#ffffff',
+        '--text-color': '#000000',
         '--body-bg-color': '#e6f2ff',
         '--panel-bg-color': '#cce6ff',
     },
@@ -36,13 +36,13 @@ const colorSchemes = {
         '--primary-bg-color': '#2e8b57',
         '--secondary-bg-color': '#3cb371',
         '--hover-bg-color': '#66cdaa',
-        '--text-color': '#ffffff',
+        '--text-color': '#000000',
         '--body-bg-color': '#e8f5e9',
         '--panel-bg-color': '#c8e6c9',
     },
     colorblind: {
         '--primary-bg-color': '#000000',
-        '--secondary-bg-color': '#ffffff',
+        '--secondary-bg-color': '#2b2b2b',
         '--hover-bg-color': '#7f7f7f',
         '--text-color': '#ffffff',
         '--body-bg-color': '#ffffff',
@@ -98,12 +98,6 @@ calculateButton.addEventListener("click", calculate);
 const daysInput = document.getElementById("days-input");
 const startSizeInput = document.getElementById("start-size-input");
 const tableBody = document.querySelector("table tbody");
-
-function calculate(event) {
-    event.preventDefault();
-    console.log("Calculate Button clicked!");
-    console.log(`Days to calculate: ${daysInput.value}, Starting Patch Size: ${startSizeInput.value}`);
-}
 
 //Functions
 function calculate()

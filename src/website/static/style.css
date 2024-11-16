@@ -1,55 +1,56 @@
 /* Base Styles */
 :root {
 
-/* Primary Color Variables */
---primary-bg-color: #005f73;     /* Space Cadet */
---secondary-bg-color: #8d99aeff;   /* Cool Gray */
---hover-bg-color: #94d2bd;       /* Red Pantone */
---text-color: #edf2f4ff;           /* Anti-Flash White */
---body-bg-color: #edf2f4ff;        /* Anti-Flash White */
---panel-bg-color: #94d2bd;       /* Fire Engine Red */
-
-/* Font Sizes */
---font-size-small: 0.9rem;
---font-size-base: 1rem;
---font-size-large: 1.2rem;
-
-/* Spacing */
---spacing-small: 0.5rem;
---spacing-base: 1rem;
---spacing-large: 1.5rem;
-
-/* Border Radius */
---border-radius: 0.5rem;
-
-/* CSS HEX */
---space-cadet: #2b2d42ff;
---cool-gray: #8d99aeff;
---antiflash-white: #edf2f4ff;
---red-pantone: #ef233cff;
---fire-engine-red: #d90429ff;
-
-/* CSS HSL */
---space-cadet: hsla(235, 21%, 21%, 1);
---cool-gray: hsla(218, 17%, 62%, 1);
---antiflash-white: hsla(197, 24%, 94%, 1);
---red-pantone: hsla(353, 86%, 54%, 1);
---fire-engine-red: hsla(350, 96%, 43%, 1);
-
-/* Gradient Variables */
---gradient-top: linear-gradient(0deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
---gradient-right: linear-gradient(90deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
---gradient-bottom: linear-gradient(180deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
---gradient-left: linear-gradient(270deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
---gradient-top-right: linear-gradient(45deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
---gradient-bottom-right: linear-gradient(135deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
---gradient-top-left: linear-gradient(225deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
---gradient-bottom-left: linear-gradient(315deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
---gradient-radial: radial-gradient(#2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
-
-}
-
-/* Reset and Body Settings */
+    /* Primary Color Variables */
+    --primary-bg-color: #005f73;     /* Space Cadet */
+    --secondary-bg-color: #8d99aeff;   /* Cool Gray */
+    --hover-bg-color: #94d2bd;       /* Red Pantone */
+    --text-color: #edf2f4ff;           /* Anti-Flash White */
+    --body-bg-color: #edf2f4ff;        /* Anti-Flash White */
+    --panel-bg-color: #94d2bd;       /* Fire Engine Red */
+    
+    /* Font Sizes */
+    --font-size-small: 0.9rem;
+    --font-size-base: 1rem;
+    --font-size-large: 1.2rem;
+    
+    /* Spacing */
+    --spacing-small: 0.5rem;
+    --spacing-base: 1rem;
+    --spacing-large: 1.5rem;
+    
+    /* Border Radius */
+    --border-radius: 0.5rem;
+    
+    /* CSS HEX */
+    --space-cadet: #2b2d42ff;
+    --cool-gray: #8d99aeff;
+    --antiflash-white: #edf2f4ff;
+    --red-pantone: #ef233cff;
+    --fire-engine-red: #d90429ff;
+    
+    /* CSS HSL */
+    --space-cadet: hsla(235, 21%, 21%, 1);
+    --cool-gray: hsla(218, 17%, 62%, 1);
+    --antiflash-white: hsla(197, 24%, 94%, 1);
+    --red-pantone: hsla(353, 86%, 54%, 1);
+    --fire-engine-red: hsla(350, 96%, 43%, 1);
+    
+    /* Gradient Variables */
+    --gradient-top: linear-gradient(0deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+    --gradient-right: linear-gradient(90deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+    --gradient-bottom: linear-gradient(180deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+    --gradient-left: linear-gradient(270deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+    --gradient-top-right: linear-gradient(45deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+    --gradient-bottom-right: linear-gradient(135deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+    --gradient-top-left: linear-gradient(225deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+    --gradient-bottom-left: linear-gradient(315deg, #2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+    --gradient-radial: radial-gradient(#2b2d42ff, #8d99aeff, #edf2f4ff, #ef233cff, #c20222);
+    
+    }
+    
+    /* Reset and Body Settings */
+   /* Reset and Body Settings */
 * {
     margin: 0;
     padding: 0;
@@ -273,16 +274,6 @@ textarea:focus {
     overflow: hidden;
 }
 
-/* Colorblind Friendly Color Scheme */
-.colorblind-scheme {
-    --primary-bg-color: #000000;
-    --secondary-bg-color: #ffffff;
-    --hover-bg-color: #aaaaaa;
-    --text-color: #ffffff;
-    --body-bg-color: #ffffff;
-    --panel-bg-color: #000000;
-}
-
 table { 
     width: 100%; 
     border-collapse: collapse; 
@@ -314,7 +305,7 @@ td {
 
 .input-container label {
     font-size: var(--font-size-base); /* Match font size to other elements */
-    color: var(--primary-bg-color); /* Use a primary color for consistency */
+    color: var(--text-color); /* Use a primary color for consistency */
     margin-bottom: var(--spacing-small); /* Space below the label */
 }
 
@@ -323,10 +314,9 @@ td {
     font-size: var(--font-size-base); /* Font size for readability */
     border: 1px solid var(--secondary-bg-color); /* Subtle border */
     border-radius: var(--border-radius); /* Rounded corners */
-    background-color: var(--body-bg-color); /* Match the background */
+    background-color: var(--primary-bg-color); /* Match the background */
     color: var(--text-color); /* Match text color */
     transition: all 0.2s ease-in-out; /* Smooth hover effect */
-    color: black;
 }
 
 .input-container input:hover,

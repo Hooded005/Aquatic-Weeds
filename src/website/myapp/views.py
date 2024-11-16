@@ -10,12 +10,16 @@ from src.models.predictive_model import *  # Import your model function
 
 def prediction_view(request):
     data = []  # Default empty data in case the user hasn't submitted the form
+    alert_message = None  # Initialize alert message
     if request.method == 'POST':
         start_size = float(request.POST.get('start_size_input', 0))
         days = int(request.POST.get('days_input', 0))
         
         # Call your prediction model function
-        predictions, avg_Size = daily_predictions_from_json(start_size, days)
+        predictions, avg_size = daily_predictions(start_size, days)
+        
+        # Generate alert message
+        alert_message = send_Alert(avg_size)
         
         # Format the predictions data to match the table structure
         data = [
@@ -29,6 +33,5 @@ def prediction_view(request):
             } 
             for pred in predictions
         ]
-        print(data)
     
-    return render(request, 'index.html', {'data': data})
+    return render(request, 'index.html', {'data': data, 'alert_message': alert_message})

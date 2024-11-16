@@ -3,7 +3,6 @@ import csv
 import pandas as pd
 import os
 from dotenv import load_dotenv
-import json
 
 # Coordinates and API credentials
 latitude = -25.7381
@@ -20,28 +19,6 @@ weather_api_url = f'https://afrigis.services/weather-forecast/v1/getDailyByCoord
 # Load historical data for training# Get the absolute path to the root directory
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'))
 file_path = os.path.join(base_dir, 'data/new/weather.csv')
-
-# ==============================JSON FILE BACKUP===================================
-# Define the path to the sample JSON file
-json_file_path = os.path.join(base_dir, 'data/new/weather.json')
-
-def extract_sample_forecast_details(predicted_size):
-    """Extract forecast details from the sample JSON file."""
-    weather_Data = []
-    
-    # Open and load the JSON file
-    with open(json_file_path, 'r') as json_file:
-        sample_data = json.load(json_file)
-    
-    # Process the data
-    for day in sample_data:
-        temp_avg = day['temperature']
-        wind_speed = day['wind_speed']
-        wind_direction = day['wind_direction']
-        weather_Data.append([temp_avg, wind_speed, wind_direction, predicted_size])
-    
-    return weather_Data
-# ==============================JSON FILE BACKUP===================================
 
 def get_access_token():
     """Fetch the OAuth2 token."""
