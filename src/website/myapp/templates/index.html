@@ -45,7 +45,7 @@
           <form method="POST" action="{% url 'prediction_view' %}">
             {% csrf_token %}
             <div class="input-container">
-              <label for="days-input">Select the amount of days:</label>
+              <label for="days-input">Select number of days to calculate:</label>
               <input
                 type="number"
                 max="7"
@@ -53,11 +53,11 @@
                 id="days-input"
                 name="days_input"
                 class="textbox"
-                placeholder="Choose Number of Days"
+                placeholder="Number of Days to Calculate"
               />
             </div>
             <div class="input-container">
-              <label for="start-size-input">Enter start size:</label>
+              <label for="start-size-input">Enter patch starting coverage:</label>
               <input
                 type="number"
                 max="100"
@@ -65,7 +65,7 @@
                 id="start-size-input"
                 name="start_size_input"
                 class="textbox"
-                placeholder="Starting Hyacinth Patch Size"
+                placeholder="Starting Hyacinth Patch Coverage"
               />
             </div>
 
@@ -87,11 +87,12 @@
 
         <!-- Data Section -->
         <section class="patch-info-section">
-          <h2>Data</h2>
-          <!-- Display Area -->
+          <h2>Hyacinth Patch Coverage Predictions</h2>
+          <!-- Display Area 
           <div class="display-area">
             <p>Display Area</p>
           </div>
+          -->
 
           <table border="1">
             <thead>
@@ -100,8 +101,8 @@
                 <th>Temperature</th>
                 <th>Wind Speed</th>
                 <th>Wind Direction</th>
-                <th>Patch Size</th>
-                <th>Predicted End Size</th>
+                <th>Coverage</th>
+                <th>Predicted Coverage</th>
               </tr>
             </thead>
             <tbody>
