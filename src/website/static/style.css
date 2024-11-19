@@ -278,6 +278,7 @@ table {
     width: 100%; 
     border-collapse: collapse; 
     margin: 20px 0; 
+    color: var(--text-color);
 }
 th, td{ 
     padding: 12px; /* Increase padding */
@@ -288,8 +289,9 @@ th, td{
 }
 th { 
     background-color: #f2f2f2; 
+    color: #000;
 }
-td { 
+tr { 
     padding-left: 20px; /* Add larger gap between columns */ 
     margin-right: 10px; 
     color: var(--text-color);
