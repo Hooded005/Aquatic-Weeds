@@ -1,162 +1,119 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <title>Dashboard Layout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- External CSS -->
     <link rel="stylesheet" href="{% static 'style.css' %}" />
-  </head>
-  <body>
+</head>
+<body>
     <!-- Skip Navigation Link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Header -->
     <header class="header">
-      <nav class="navbar">
-        <h1 class="navbar-brand">Dashboard</h1>
-        <div class="color-scheme-selector">
-          <label for="color-scheme">Color Scheme:</label>
-          <select
-            id="color-scheme"
-            name="color-scheme"
-            aria-label="Select color scheme"
-            title="Select a color scheme to change the dashboard appearance"
-          >
-            <option value="default">Default</option>
-            <option value="dark">Dark Mode</option>
-            <option value="light">Light Mode</option>
-            <option value="blue">Blue Scheme</option>
-            <option value="green">Green Scheme</option>
-            <option value="colorblind">Colorblind Friendly</option>
-          </select>
-        </div>
-      </nav>
+        <nav class="navbar">
+            <h1 class="navbar-brand">Dashboard</h1>
+            <div class="color-scheme-selector">
+                <label for="color-scheme">Color Scheme:</label>
+                <select id="color-scheme" name="color-scheme" aria-label="Select color scheme" title="Select a color scheme to change the dashboard appearance">
+                    <option value="default">Default</option>
+                    <option value="dark">Dark Mode</option>
+                    <option value="light">Light Mode</option>
+                    <option value="blue">Blue Scheme</option>
+                    <option value="green">Green Scheme</option>
+                    <option value="colorblind">Colorblind Friendly</option>
+                </select>
+            </div>
+        </nav>
     </header>
 
     <!-- Main Content -->
     <main class="main-content" id="main-content">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <!-- Inputs Section -->
-        <section class="date-picker-section">
-          <h2>Inputs</h2>
-          <form method="POST" action="{% url 'prediction_view' %}">
-            {% csrf_token %}
-            <div class="input-container">
-              <label for="days-input">Select number of days to calculate:</label>
-              <input
-                type="number"
-                max="7"
-                min="0"
-                id="days-input"
-                name="days_input"
-                class="textbox"
-                placeholder="Days"
-              />
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Inputs Section -->
+            <section class="date-picker-section">
+                <h2>Inputs</h2>
+                <form method="POST" action="{% url 'prediction_view' %}">
+                    {% csrf_token %}
+                    <div class="input-container">
+                        <label for="days-input">Select number of days to calculate:</label>
+                        <input type="number" max="7" min="0" id="days-input" name="days_input" class="textbox" placeholder="Days" />
+                    </div>
+                    <div class="input-container">
+                        <label for="start-size-input">Enter patch starting coverage:</label>
+                        <input type="number" max="100" min="0" id="start-size-input" name="start_size_input" class="textbox" placeholder="Size" />
+                    </div>
+
+                    <div class="input-container">
+                        <button type="submit" id="calculate-button" class="button">Calculate</button>
+                        <button type="reset" id="clear-output-button" class="button">Clear Output</button>
+                        <a href="https://davidkinsler123.users.earthengine.app/view/macrophyte-monitoring-tool" target="”_blank”" id="hyperlink-button" class="button">Get Known Coverage</a>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Data Section -->
+            <section class="patch-info-section">
+                <h2>Hyacinth Patch Coverage Predictions</h2>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Temperature</th>
+                            <th>Wind Speed</th>
+                            <th>Wind Direction</th>
+                            <th>Coverage</th>
+                            <th>Predicted Coverage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in data %}
+                        <tr>
+                            <td>{{ row.Date }}</td>
+                            <td>{{ row.Temperature }}</td>
+                            <td>{{ row.Wind_Speed }}</td>
+                            <td>{{ row.Wind_Direction }}</td>
+                            <td>{{ row.Start_Size }}</td>
+                            <td>{{ row.Predicted_End_Size }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </aside>
+
+        <!-- Content Area -->
+        <section class="content-area">
+            <!-- Map Section -->
+            <div class="map-section" tabindex="0" role="img" aria-label="Interactive map">
+                <img src="{% static image_path %}" />
+                <div class="Justifiedmap">
+                    <form method="POST" action="{% url 'cycle_data' 'previous' %}">
+                        {% csrf_token %}
+                        <button class="button" aria-label="Select previous map">&#8592;</button>
+                    </form>
+                    <p class="map-title">{{ coverage_date }} - {{ coverage_percentage }} - {{ coverage_description }}</p>
+                    <form method="POST" action="{% url 'cycle_data' 'next' %}">
+                        {% csrf_token %}
+                        <button class="button" aria-label="Select next map">&#8594;</button>
+                    </form>
+                </div>
             </div>
-            <div class="input-container">
-              <label for="start-size-input">Enter patch starting coverage:</label>
-              <input
-                type="number"
-                max="100"
-                min="0"
-                id="start-size-input"
-                name="start_size_input"
-                class="textbox"
-                placeholder="Size"
-              />
-            </div>
-          </form>
-
-          <div class="input-container">
-            <button type="submit" id="calculate-button" class="button">
-              Calculate
-            </button>
-            <button type="reset" id="clear-output-button" class="button">
-              Clear Output
-            </button>
-            <a
-              href="https://davidkinsler123.users.earthengine.app/view/macrophyte-monitoring-tool"
-              target="”_blank”"
-              id="hyperlink-button"
-              class="button"
-              >Get Known Coverage</a>
-          </div>
         </section>
-
-        <!-- Data Section -->
-        <section class="patch-info-section">
-          <h2>Hyacinth Patch Coverage Predictions</h2>
-          <!-- Display Area 
-          <div class="display-area">
-            <p>Display Area</p>
-          </div>
-          -->
-
-          <table border="1">
-            <thead>
-              <tr>
-                <th>Day</th>
-                <th>Temperature</th>
-                <th>Wind Speed</th>
-                <th>Wind Direction</th>
-                <th>Coverage</th>
-                <th>Predicted Coverage</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for row in data %}
-              <tr>
-                <td>{{ row.Date }}</td>
-                <td>{{ row.Temperature }}</td>
-                <td>{{ row.Wind_Speed }}</td>
-                <td>{{ row.Wind_Direction }}</td>
-                <td>{{ row.Start_Size }}</td>
-                <td>{{ row.Predicted_End_Size }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </section>
-      </aside>
-
-      <!-- Content Area -->
-      <section class="content-area">
-        <!-- Map Section -->
-        <div
-          class="map-section"
-          tabindex="0"
-          role="img"
-          aria-label="Interactive map"
-        >
-          <img src="{% static image_path %}" />
-          <div class = "Justifiedmap">
-            <form method="POST" action="{% url 'cycle_data' 'previous' %}"> 
-                {% csrf_token %} 
-                <button class="button" aria-label="Select previous map">&#8592;</button> 
-            </form> 
-              <p class="map-title">{{ coverage_date }} - {{ coverage_percentage }} - {{ coverage_description }}</p>
-              <form method="POST" action="{% url 'cycle_data' 'next' %}"> 
-                  {% csrf_token %} 
-                  <button class="button" aria-label="Select next map">&#8594;</button> 
-              </form>
-          </div>
-          </div>
-        </section>
-      </main>
+    </main>
 
     <!-- Info Section -->
     <div class="info-section">
-      <h2>Additional Information</h2>
-      <!-- Alert message dynamically inserted here -->
-      <p class="fine-print">
-        {% if alert_message %}
-          {{ alert_message }}
-        {% endif %}
+        <h2>Additional Information</h2>
+        <p class="fine-print">
+            {% if alert_message %}
+                {{ alert_message }}
+            {% endif %}
       </p>
-    
+
       <p class="fine-print">
         Please note that this data is a prediction, and that predictions further
         into the future will be less accurate. The displayed pictures are
@@ -164,7 +121,7 @@
         with various coverage percentages.
       </p>
     </div>
-    
+
 
     <!-- ARIA Live Region for Announcements -->
     <div
