@@ -73,7 +73,7 @@
             <button type="submit" id="calculate-button" class="button">
               Calculate
             </button>
-            <button type="button" id="clear-output-button" class="button">
+            <button type="reset" id="clear-output-button" class="button">
               Clear Output
             </button>
             <a
@@ -130,13 +130,13 @@
           role="img"
           aria-label="Interactive map"
         >
-          <img src="{% static 'medium.png' %}" />
+          <img src="{% static image_path %}" />
           <div class = "Justifiedmap">
             <button class="button" aria-label="Select previous map">
               &#8592;
               <!-- Left arrow symbol -->
             </button>
-            <p class="map-title">14.46% - Medium Coverage</p>
+            <p class="map-title">{{ coverage_date }} - {{ coverage_percentage }} - {{ coverage_description}} </p>
             <button class="button" aria-label="Select next map">
               &#8594;
               <!-- Right arrow symbol -->
