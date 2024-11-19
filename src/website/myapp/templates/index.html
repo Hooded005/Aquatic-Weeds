@@ -68,6 +68,7 @@
                 placeholder="Size"
               />
             </div>
+          </form>
 
           <div class="input-container">
             <button type="submit" id="calculate-button" class="button">
@@ -132,15 +133,15 @@
         >
           <img src="{% static image_path %}" />
           <div class = "Justifiedmap">
-            <button class="button" aria-label="Select previous map">
-              &#8592;
-              <!-- Left arrow symbol -->
-            </button>
-            <p class="map-title">{{ coverage_date }} - {{ coverage_percentage }} - {{ coverage_description}} </p>
-            <button class="button" aria-label="Select next map">
-              &#8594;
-              <!-- Right arrow symbol -->
-            </button>
+            <form method="POST" action="{% url 'cycle_data' 'previous' %}"> 
+                {% csrf_token %} 
+                <button class="button" aria-label="Select previous map">&#8592;</button> 
+            </form> 
+              <p class="map-title">{{ coverage_date }} - {{ coverage_percentage }} - {{ coverage_description }}</p>
+              <form method="POST" action="{% url 'cycle_data' 'next' %}"> 
+                  {% csrf_token %} 
+                  <button class="button" aria-label="Select next map">&#8594;</button> 
+              </form>
           </div>
           </div>
         </section>

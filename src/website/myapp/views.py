@@ -7,7 +7,7 @@ from pandas import array
 # Add the root project directory to the path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../')))
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from src.models.predictive_model import *  # Import your model function
 
 my_predictions = [[0, 0 ,0, 0, 0, 0]]
@@ -53,6 +53,14 @@ def prediction_view(request):
     my_context.update(redo_map(0))
 
     return render(request, 'index.html', my_context)
+
+def cycle_data_view(request, direction):
+    global array_pos, my_predictions
+    if direction == 'next':
+      array_pos  = (array_pos + 1) % len(my_predictions)
+    elif direction == 'previous':
+        array_pos = (array_pos - 1 + len(my_predictions)) % len(my_predictions)
+    return redirect('prediction_view')
 
 def redo_predictions(start_size = 5, days = 5):
     global my_predictions, array_pos, avg_size
