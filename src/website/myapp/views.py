@@ -2,8 +2,6 @@
 import sys
 import os
 
-from pandas import array
-
 # Add the root project directory to the path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../')))
 
@@ -76,14 +74,14 @@ def cycle_data_view(request, direction):
 
     return redirect(f'/prediction_view?keep_data=true')
 
-
+#Is used to generate predicted values. Used default values in case something goes wrong
 def redo_predictions(start_size=5, days=5):
     global my_predictions, array_pos, avg_size
     array_pos = 0
     my_predictions.clear()
     my_predictions, avg_size = daily_predictions_json(start_size, days)
 
-
+#Is used
 def redo_map(pos):
     global my_predictions, array_pos
 
@@ -95,7 +93,7 @@ def redo_map(pos):
     print(context)
     return context
 
-
+#Converts size to a usable description
 def coverage_description(size):
     if size <= 10:
         return "Low Coverage"
@@ -104,7 +102,7 @@ def coverage_description(size):
     elif size <= 50:
         return "High Coverage"
 
-
+#Takes patch size as an input and returns an immage to be used.
 def coverage_image(size):
     if size <= 10:
         return "low.png"
