@@ -10,10 +10,12 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../.
 from django.shortcuts import render
 from src.models.predictive_model import *  # Import your model function
 
-my_predictions = []
+my_predictions = [[0, 0 ,0, 0, 0, 0]]
 array_pos = int(0)
+avg_size = 0
+
 def prediction_view(request):
-    global my_predictions
+    global my_predictions, avg_size
     data = []  # Default empty data in case the user hasn't submitted the form
     alert_message = None  # Initialize alert message
     if request.method == 'POST':
@@ -25,9 +27,7 @@ def prediction_view(request):
         for row in my_predictions:
             print(*row, sep="\t")
 
-        my_predictions.clear()
-        # Call your prediction model function
-        my_predictions, avg_size = daily_predictions_json(start_size, days)
+        redo_predictions(start_size, days)
 
         #Prints new predicted values
         print("New: ")
@@ -54,9 +54,11 @@ def prediction_view(request):
 
     return render(request, 'index.html', my_context)
 
-def redo_predictions():
-    global my_predictions, array_pos
+def redo_predictions(start_size = 5, days = 5):
+    global my_predictions, array_pos, avg_size
     array_pos = 0
+    my_predictions.clear()
+    my_predictions, avg_size = daily_predictions_json(start_size, days)
 
 def redo_map(pos):
     global my_predictions, array_pos
