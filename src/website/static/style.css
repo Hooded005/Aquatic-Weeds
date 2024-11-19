@@ -278,7 +278,6 @@ table {
     width: 100%; 
     border-collapse: collapse; 
     margin: 20px 0; 
-    color: #000000;
 }
 th, td{ 
     padding: 12px; /* Increase padding */
@@ -293,6 +292,7 @@ th {
 td { 
     padding-left: 20px; /* Add larger gap between columns */ 
     margin-right: 10px; 
+    color: var(--text-color);
 }/* Add margin to create gap */
 /* Additional Color Schemes can be defined similarly */
 
