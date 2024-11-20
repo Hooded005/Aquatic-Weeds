@@ -79,7 +79,7 @@ def redo_predictions(start_size=5, days=5):
     global my_predictions, array_pos, avg_size
     array_pos = 0
     my_predictions.clear()
-    my_predictions, avg_size = daily_predictions_json(start_size, days)
+    my_predictions, avg_size = daily_predictions(start_size, days)
 
 #Is used
 def redo_map(pos):
