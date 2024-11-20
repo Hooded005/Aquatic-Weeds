@@ -26,7 +26,8 @@ def prediction_view(request):
              'Wind_Direction': pred[3],
              'Start_Size': str(pred[4]) + '%',
              'Predicted_End_Size': str(pred[5]) + '%'}
-            for pred in my_predictions]
+            for pred in my_predictions]        
+        alert_message = send_Alert(avg_size)
     elif request.method == 'POST':
         start_size = float(request.POST.get('start_size_input', 0))
         days = int(request.POST.get('days_input', 0))
